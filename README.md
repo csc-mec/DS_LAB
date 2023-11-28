@@ -26,8 +26,8 @@
 | Infix to postfix | [TBD]() | [TBD](#infix-to-postfix) |
 | Postfix evaluation | [TBD]() | [TBD](#postfix-evaluation) |
 | Linked list | [TBD]() | [Link](#linked-list) |
-| Queue using linked list | [TBD]() | [TBD](#queue-using-linked-list) |
-| Stack using linked list | [TBD]() | [TBD](#stack-using-linked-list) |
+| Queue using linked list | [TBD]() | [Link](#queue-using-linked-list) |
+| Stack using linked list | [TBD]() | [Link](#stack-using-linked-list) |
 | Circular linked list | [TBD]() | [TBD](#circular-linked-list) |
 | Doubly linked list | [TBD]() | [TBD](#doubly-linked-list) |
 
@@ -107,5 +107,93 @@ PROCEDURE DISPLAY ACCEPTING HEAD
         END WHILE
     END IF
 END PROCEDURE
+
+END PROGRAM
 ```
+### Queue using linked list
+```psudocode
+
+PROGRAM QUEUEUSINGLINKEDLIST
+
+PROCEDURE ENQUEUE ACCEPTING HEAD
+    CREATE NEWNODE
+    INPUT NEWNODE->DATA
+    SET NEWNODE->NEXT = NULL
+    IF HEAD = NULL
+        SET HEAD = NEWNODE
+    ELSE
+        SET CURRENT = HEAD
+        WHILE CURRENT->NEXT != NULL
+            SET CURRENT = CURRENT->NEXT
+        END WHILE
+        SET CURRENT->NEXT = NEWNODE
+    END IF
+    RETURN HEAD
+END PROCEDURE
+
+PROCEDURE DEQUEUE ACCEPTING HEAD
+    IF HEAD = NULL
+        PRINT "QUEUE IS EMPTY"
+    ELSE
+        SET TEMP = HEAD
+        SET HEAD = HEAD->NEXT
+        FREE TEMP
+    END IF
+    RETURN HEAD
+END PROCEDURE
+
+PROCEDURE DISPLAY ACCEPTING HEAD
+    IF HEAD = NULL
+        PRINT "QUEUE IS EMPTY"
+    ELSE
+        SET CURRENT = HEAD
+        WHILE CURRENT != NULL
+            PRINT CURRENT->DATA
+            SET CURRENT = CURRENT->NEXT
+        END WHILE
+    END IF
+END PROCEDURE
+
+END PROGRAM
+```
+
+### Stack using linked list
+```psudocode
+PROGRAM STACKUSINGLINKEDLIST
+
+PROCEDURE PUSH ACCEPTING HEAD
+    CREATE NEWNODE
+    INPUT NEWNODE->DATA
+    SET NEWNODE->NEXT = HEAD
+    SET HEAD = NEWNODE
+    RETURN HEAD
+END PROCEDURE
+
+PROCEDURE POP ACCEPTING HEAD
+    IF HEAD = NULL
+        PRINT "STACK IS EMPTY"
+    ELSE
+        SET TEMP = HEAD
+        SET HEAD = HEAD->NEXT
+        FREE TEMP
+    END IF
+    RETURN HEAD
+END PROCEDURE
+
+PROCEDURE DISPLAY ACCEPTING HEAD
+    IF HEAD = NULL
+        PRINT "STACK IS EMPTY"
+    ELSE
+        SET CURRENT = HEAD
+        WHILE CURRENT != NULL
+            PRINT CURRENT->DATA
+            SET CURRENT = CURRENT->NEXT
+        END WHILE
+    END IF
+END PROCEDURE
+
+END PROGRAM
+```
+
+
 
