@@ -6,6 +6,10 @@
 - [Psudocodes](#psudocodes)
 
 ## Programs
+
+>[!NOTE]  
+>Please create an issue if you find any errors in the programs.
+
 | Program | Code | Psudocode |
 | :--- | :--- | :--- |
 | Linear Search | [Link](https://github.com/csc-mec/DS_LAB/blob/main/linear_search.c) | [TBD](#linear-search) |
@@ -33,6 +37,67 @@
 
 
 ## Psudocodes
+
+>[!WARNING]  
+>These are not the exact psudocodes used in the programs. These are just for reference.
+
+### Linear Search
+
+```psudocode
+PROGRAM LINEARSEARCH
+
+PROCEDURE MAIN
+    INPUT size
+    INPUT array of size
+    INPUT key
+    SET index = -1
+    FOR i = 0 TO size
+        IF array[i] = key
+            SET index = i
+            BREAK
+        END IF
+    END FOR
+    IF index = -1
+        PRINT "KEY NOT FOUND"
+    ELSE
+        PRINT "KEY FOUND AT INDEX ", index
+    END IF
+END PROCEDURE
+
+END PROGRAM
+```
+
+### Binary Search
+```psudocode
+PROGRAM BINARYSEARCH
+
+PROCEDURE MAIN
+    INPUT size
+    INPUT array of size
+    INPUT key
+    SET index = -1
+    SET low = 0
+    SET high = size - 1
+    WHILE low <= high
+        SET mid = (low + high) / 2
+        IF array[mid] = key
+            SET index = mid
+            BREAK
+        ELSE IF array[mid] < key
+            SET low = mid + 1
+        ELSE
+            SET high = mid - 1
+        END IF
+    END WHILE
+    IF index = -1
+        PRINT "KEY NOT FOUND"
+    ELSE
+        PRINT "KEY FOUND AT INDEX ", index
+    END IF
+END PROCEDURE
+
+END PROGRAM
+```
 
 ### Linked List
 ```psudocode
