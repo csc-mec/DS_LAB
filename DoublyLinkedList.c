@@ -14,67 +14,59 @@ void pushfront(int k){
 	struct node*temp=head;
 	struct node*new_node=(struct node*)malloc(sizeof(struct node));
 	new_node->data=k;
-	if(head == NULL){  
-	   new_node->next = NULL;  
-       new_node->prev = NULL;  
-       head = new_node;  
+	new_node->prev = NULL;
+	if(head == NULL){
+       new_node->next = NULL;
+       head = new_node;
+       return;
     }
-    else{
-		new_node->next=head;
-		temp->prev=new_node;
-		head=new_node;
-	}
+    new_node->next=head;
+    temp->prev=new_node;
+    head=new_node;
 }
 void pushrear(int k){
 	struct node*temp=head;
 	struct node*new_node=(struct node*)malloc(sizeof(struct node));
 	new_node->data=k;
-	if(head == NULL){  
-	   new_node->next = NULL;  
-       new_node->prev = NULL;  
-       head = new_node;  
-    }
-    else{
-		while(temp->next!=NULL){
-			temp=temp->next;
-		}
-		temp->next=new_node; //Here value of new_node is NULL
-		new_node->prev=temp;
+	new_node->next=NULL;
+	if(head == NULL){
+       new_node->prev = NULL;
+       head = new_node;
+       return;
 	}
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    //Here value of new_node is NULL
+    temp->next=new_node;
+    new_node->prev=temp;
 }
 void insert(int value,int k){
 	struct node*temp=head;
-	struct node*new_node=malloc(sizeof(struct node));
-	while(temp->data!=value){
-		temp=temp->next;
-	}
-	new_node->data=k;
-	new_node->next=temp->next;
-	temp->next=new_node;
-	new_node->prev=temp;
-	temp=new_node->next; //Assigning value of prev in next node to that of the address of new_node
-	temp->prev=new_node;	
+    struct node*new_node=malloc(sizeof(struct node));
+    while(temp->data!=value){
+        temp=temp->next;
+    }
+    new_node->data=k;
+    new_node->next=temp->next;
+    temp->next=new_node;
+    new_node->prev=temp;
+    //Assigning value of prev in next node to that of the address of new_node
+    temp=new_node->next;
+    temp->prev=new_node;
 }
 void display(){
 	struct node*temp=head;
-	while(temp!=NULL){
-		//printing value of head
-		if(temp->prev==NULL){
-			printf("NULL : %d : %p (current address:%p) \n",temp->data,temp->next,temp); 
-		}
-		//printing value of tail
-		else if(temp->next==NULL){
-			printf("%p : %d : NULL (current address:%p) \n",temp->prev,temp->data,temp);
-		}
-		//If only one element is remaining
-		else if(temp->prev==NULL&&temp->next==NULL){
-			printf("NULL : %d : NULL (current address:%p) \n",temp->data,temp);
-		}
-		//printing value of all other elements
-		else{
-			printf("%p : %d : %p (current address:%p) \n",temp->prev,temp->data,temp->next,temp); 
-		}
-		temp=temp->next;
+    if(temp==NULL){
+        printf("No elements in list! \n");
+        return;
+	}
+	else{
+        while(temp!=NULL){
+            //printing value of head
+            printf(" %d \n",temp->data);
+            temp=temp->next;
+        }
 	}
 }
 void deletefront(){
@@ -82,17 +74,33 @@ void deletefront(){
 	if(head==NULL){
 		printf("List is empty");
 	}
+	else if(temp->next==NULL&&temp->prev==NULL){
+        printf("The deleted element is: %d \n",temp->data);
+        free(head);
+        //You need to assign value of head as NULL so that display does not loop endlessly
+        head=NULL;
+        return;
+	}
 	else{
 		printf("The deleted element is: %d \n",temp->data);
 		temp=temp->next;
 		head=temp;
 		temp->prev=NULL;
 		free(temp->prev);
+		return;
 	}
 }
 void deleterear(){
+    struct node*temp=head;
 	if(head==NULL){
 		printf("List is empty");
+		return;
+	}
+	else if(temp->next==NULL&&temp->prev==NULL){
+        printf("The deleted element is: %d \n",temp->data);
+        free(head);
+        head=NULL;
+        return;
 	}
 	else{
 		struct node*temp=head;
@@ -104,6 +112,7 @@ void deleterear(){
 		printf("The deleted element is: %d \n",temp->data);
 		current->next=NULL;
 		free(temp);
+		return;
 	}
 }
 
@@ -139,13 +148,20 @@ void main(){
 			}
 			case 3:{
 				int v,k;
-				printf("Enter value after which data is to be entered: ");
-				scanf("%d",&v);
-				printf("Insert value: ");
-				scanf("%d",&k);
-				insert(v,k);
-				printf("Element inserted successfully! \n");
-				break;
+				struct node*temp=head;
+				if(temp==NULL){
+                    printf("List is empty \n");
+                    break;
+				}
+				else{
+                    printf("Enter value after which data is to be entered: ");
+                    scanf("%d",&v);
+                    printf("Insert value: ");
+                    scanf("%d",&k);
+                    insert(v,k);
+                    printf("Element inserted successfully! \n");
+                    break;
+				}
 			}
 			case 4:{
 				deletefront();
