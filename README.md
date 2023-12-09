@@ -3,7 +3,7 @@
 ## Contents
 - [Contents](#contents)
 - [Programs](#programs)
-- [Psudocodes](#psudocodes)
+- [Psudocodes](https://github.com/csc-mec/DS_LAB/blob/main/psudocodes.md)
 
 ## Programs
 
