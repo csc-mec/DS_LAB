@@ -6,8 +6,8 @@
     https://github.com/csc-mec/DS_LAB/blob/main/psudocodes/psudo_index.md
  -->
 
-- [Variation 1](https://github.com/csc-mec/DS_LAB/blob/main/psudocodes/n1ved.md)
-- [Variation 2](/path/to/file2.pseudo) 
+- [Variation 1](https://github.com/csc-mec/DS_LAB/blob/main/pseudocodes/n1ved.md)
+- [Variation 2](https://github.com/csc-mec/DS_LAB/blob/main/pseudocodes/gautham.txt) 
 - [Variation 3](/path/to/file3.pseudo) 
 
 
