@@ -7,7 +7,7 @@
  -->
 
 - [Variation 1](https://github.com/csc-mec/DS_LAB/blob/main/pseudocodes/n1ved.md)
-- [Variation 2](https://github.com/csc-mec/DS_LAB/blob/main/pseudocodes/gautham.txt) 
+- [Variation 2](https://github.com/csc-mec/DS_LAB/blob/main/pseudocodes/gautham.md) 
 - [Variation 3](/path/to/file3.pseudo) 
 
 
