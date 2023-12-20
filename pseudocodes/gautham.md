@@ -4,7 +4,7 @@
 > [!NOTE]
 > For referring the Programs [Click Here](https://github.com/mightymonarch1438/DS-LAB-PERSONAL)
 
-### Linear Search
+### LINEAR SEARCH
 ```
 PROCEDURE linearSearch(INT n , INT x, INT A[n])
     FOR i = 0 TO n - 1
