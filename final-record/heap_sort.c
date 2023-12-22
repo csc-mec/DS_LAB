@@ -30,9 +30,9 @@ void heapsort(int a[],int n){
 }
 int main(){
     int n,a[20],i;
-    printf("Enter size of array");
+    printf("Enter size of array : ");
     scanf("%d",&n);
-    printf("Enter array");
+    printf("Enter array : ");
     for(i=0;i<n;i++){
         scanf("%d",&a[i]);
     }
@@ -42,4 +42,5 @@ int main(){
     for(i=0;i<n;i++){
         printf("%d\t",a[i]);
     }
+    printf("\n");
 }
