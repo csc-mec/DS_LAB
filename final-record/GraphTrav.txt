@@ -1,0 +1,148 @@
+STRUCTURE node
+    INT data
+    STRUCTURE node next
+END STRUCTURE
+SET top = -1, f = 0,  r = -1
+PROCEDURE addLast ACCEPTS head, data
+    CREATE newnode and ALLOCATE MEMORY
+    SET newnode→data = data
+    SET newnode→next = NULL
+    IF head == NULL
+        SET head = newnode
+    ELSE
+        SET current=head
+        WHILE current→next != NULL
+            SET current = current→next
+        END WHILE
+        SET current→next=newnode
+    END IF
+    RETURN head
+END PROCEDURE
+
+PROCEDURE isEmptyS 
+    RETURN  top == -1
+END PROCEDURE
+
+PROCEDURE isEmptyQ
+    RETURN  f > r
+END PROCEDURE
+
+PROCEDURE push ACCEPTS n, S[n], data
+    SET top = top + 1
+    SET S[top] = data
+END PROCEDURE
+
+PROCEDURE pop ACCEPTS n, S[n]
+    SET top = top – 1
+    RETURN  S[top + 1]
+END PROCEDURE
+
+PROCEDURE deQueue ACCEPTS n, Q[n]
+    SET f = f + 1
+    RETURN  Q[f – 1]
+END PROCEDURE
+
+PROCEDURE enQueue ACCEPTS n, Q[n], data
+    SET r = r + 1
+    SET Q[r] = data
+END PROCEDURE
+
+PROCEDURE main
+INPUT number of vertices from user as n
+DECLARE array aList[] of size n of type STRUCT node
+PRINT input vertices
+FOR i = 0 to n – 1
+    SET aList[i] = NULL
+    INPUT data from user
+    SET aList[i] = CALL PROCEDURE addLast PASSING aList[i], data
+    INCREMENT i   
+END FOR
+FOR i = 0 to n – 1
+    INPUT number of neighbours m for vertex aList[i]→data
+    PRINT Enter neighbours
+    FOR j = 0 to m – 1
+        INPUT data from user
+        SET aList[i] = CALL PROCEDURE addLast PASSING aList[i], data
+        INCREMENT j
+    END FOR
+    INCREMENT i 
+END FOR
+PRINT Adjescentsy List
+FOR i = 0 to n – 1
+    SET current = aList[i]
+    WHILE current→next != NULL
+        PRINT current→data  -->
+        current = current→next
+    END WHILE
+    PRINT current→data
+    INCREMENT i 
+END FOR
+DECLARE arrays Stack , visit , Queue of size n
+CALL PROCEDURE push PASSING n, Stack, aList[0]→data
+SET index = -1
+WHILE PROCEDURE isEmptyS RETURNS FALSE
+    SET high = CALL PROCEDURE pop PASSING n, Stack
+    SET index = index + 1, visit[index] = high
+    FOR i = 0 to n – 1
+        IF aList[i]→data == high
+            SET current = aList[i]→next
+        END IF
+        INCREMENT i 
+    END FOR
+    WHILE current != NULL
+        SET f = 0
+        FOR i = 0 to index
+            IF visit[i] == current→data
+                SET f = 1
+            END IF
+            INCREMENT i     
+        END FOR
+        FOR i = 0 to top
+            IF Stack[i] == current→data
+                SET f = 1
+            END IF
+            INCREMENT i 
+        END FOR
+        IF f != 1
+            CALL PROCEDURE push PASSING n, Stack, current→data
+        END IF
+        SET current = current→next
+    END WHILE
+END WHILE
+PRINT Depth First Search
+FOR i = 0 to index
+    PRINT visit[i]
+    INCREMENT i 
+END FOR
+SET index = -1
+SET index = index + 1, visit[index] = aList[0]→data
+CALL PROCEDURE enQueue PASSING n, Queue, aList[0]→data
+WHILE PROCEDURE isEmptyQ RETURNS FALSE
+    SET low = CALL PROCEDURE deQueue PASSING n, Queue
+    FOR i = 0 to n – 1
+        IF aList[i]→data == low
+            current = aList[i]
+        END IF
+        INCREMENT i 
+    END FOR
+    WHILE current→next != NULL
+        current = current→next
+        SET f = 0
+        FOR i = 0 to index
+            IF visit[i] == current→data
+                SET f = 1
+            END IF
+            INCREMENT i 
+        END FOR
+         IF f != 1
+             SET index = index + 1, visit[index] = current→data
+             CALL PROCEDURE enQueue PASSING n, Queue, current→data
+         END IF
+    END WHILE
+END WHILE
+PRINT Breadth First Search
+FOR i = 0 to index
+    PRINT visit[i]
+    INCREMENT i 
+END FOR
+END PROGRAM
