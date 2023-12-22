@@ -1,0 +1,40 @@
+PROGRAM LLpolynomial
+DECLARE STRUCTURE node
+	DECLARE INTEGER coeff
+    	DECLARE INTEGER exp
+    	DECLARE POINTER node next
+END STRUCTURE
+DECLARE pointers newnode, current, head, tail
+SET head, tail to NULL
+PROCEDURE create
+ 	DECLARE integers n, i
+    	INPUT number of terms n
+    	FOR i=0 to i<n
+        		ALLOCATE newnode
+        		INPUT newnode->coeff, newnode->exp
+        		SET newnode->next = NULL
+        		IF head=NULL 
+            			SET head = newnode
+            			SET tail = newnode
+        		ELSE
+            			SET tail->next = newnode
+            			SET tail = newnode
+        		END IF
+    	END FOR
+END PROCEDURE
+
+PROCEDURE display
+    	SET current = head
+    	WHILE current is not NULL 
+     			PRINT current->coeff, "x^", current->exp
+        		IF current is not tail 
+            			PRINT "+"
+        		END IF
+        		SET current = current->next
+    	END WHILE
+END PROCEDURE
+PROCEDURE main
+	CALL create
+    	CALL display
+END PROCEDURE
+END PROGRAM
