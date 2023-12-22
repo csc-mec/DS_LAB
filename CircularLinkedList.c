@@ -1,4 +1,3 @@
-
 #include<stdio.h>
 #include<stdbool.h>
 #include<stdlib.h>
@@ -132,7 +131,7 @@ bool addmid(struct node *head,int a , int b){
            int e;
            scanf("%d",&e);
            newnode->data=e;
-           newnode->next=current->next;
+           newnode->next=head->next;
            current->next=newnode;
            return true;
        }
