@@ -3,16 +3,14 @@
 DECLARE degree 
 SET degree = 0
 
-PROCEDURE createPoly(head)
+PROCEDURE createPoly ACCEPTS head
     DECLARE n, i, m
     DECLARE ptr, temp
 
-    PRINT "ENTER NUMBER OF TERMS IN POLYNOMIAL : "
     READ n
 
     FOR i = 0 TO n - 1
         ALLOCATE ptr
-        PRINT "ENTER COEFFICIENT AND POWER : "
         READ ptr.coeff, ptr.pow
 
         IF i = 0 THEN
@@ -35,7 +33,7 @@ PROCEDURE createPoly(head)
     RETURN head
 END PROCEDURE
 
-PROCEDURE createPolyFromHash(hash[], m)
+PROCEDURE createPolyFromHash ACCEPTS hash,m
     DECLARE ptr, temp
 
     FOR i = 0 TO m
@@ -56,7 +54,7 @@ PROCEDURE createPolyFromHash(hash[], m)
     END FOR
 END PROCEDURE
 
-PROCEDURE displayPoly(head)
+PROCEDURE displayPoly ACCEPTS head
     DECLARE ptr
 
     SET ptr = head
@@ -70,11 +68,9 @@ PROCEDURE displayPoly(head)
         PRINT ptr.coeff + "x^" + ptr.pow + " + "
         SET ptr = ptr.next
     END WHILE
-
-    PRINT "\n"
 END PROCEDURE
 
-PROCEDURE multiplyPoly(head1, head2, m)
+PROCEDURE multiplyPoly ACCEPTS head1,head2,m
     DECLARE ptr1, ptr2
     DECLARE hash[m+1]
 
@@ -97,14 +93,11 @@ PROCEDURE main()
     SET poly1 = CALL createPoly(poly1)
     SET poly2 = CALL createPoly(poly2)
 
-    PRINT "POLYNOMIAL 1 : "
     CALL displayPoly(poly1)
-    PRINT "POLYNOMIAL 2 : "
     CALL displayPoly(poly2)
 
     CALL multiplyPoly(poly1, poly2, degree)
 
-    PRINT "MULTIPLIED POLYNOMIAL : "
     CALL displayPoly(poly3)
 END PROCEDURE
 
