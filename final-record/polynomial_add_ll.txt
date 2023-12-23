@@ -9,7 +9,7 @@ END STRUCTURE
 DECLARE pointers poly1, poly2 and poly3 and SET to NULL
 
 PROCEDURE read_Poly ACCEPTS poly , coeff and deg
- 	DECLARE temp pointer and SET to poly
+    DECLARE temp pointer and SET to poly
     DECLARE newnode pointer and ALLOCATE MEMORY
     SET newnode→next = NULL
     SET newnode→coefficent = coeff
@@ -67,20 +67,20 @@ PROCEDURE main
 	DISPLAY MENU
     INPUT choice FROM USER
     WHILE TRUE
-        SWITCH choice
-            CASE 1:
+        CASE choice OF
+            1:
                 INPUT VALUE coeff and deg FROM USER
                 SET poly1 = read_Poly(poly1, coeff, deg)
-            CASE 2:
+            2:
                 INPUT VALUE coeff and deg FROM USER
                 SET poly2 = read_Poly(poly1, coeff, deg)
-            CASE 3:
+            3:
                 CALL addPoly()
-            CASE 4:
+            4:
                 CALL exit()
             DEFAULT:
                 DISPLAY Invalid choice
-        END SWITCH
+        END CASE
     END WHILE
 END PROCEDURE
 END PROGRAM
