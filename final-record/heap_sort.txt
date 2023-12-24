@@ -26,7 +26,7 @@ PROCEDURE heapsort ACCEPTS array,size
     DECREMENT i 
     END FOR 
     FOR i=size-1 TO 1
-        CALL swap(array[0],array[i])
+        CALL swap(*array[0],*array[i])
         CALL maxheapify(array,i,0)
     DECREMENT i
     END FOR 
