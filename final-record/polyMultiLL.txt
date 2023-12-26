@@ -1,0 +1,105 @@
+### POLYNOMIAL MULTIPLICATION USING LINKED LIST
+```
+DECLARE degree 
+SET degree = 0
+
+PROCEDURE createPoly ACCEPTS head
+    DECLARE n, i, m
+    DECLARE ptr, temp
+
+    READ n
+
+    FOR i = 0 TO n - 1
+        ALLOCATE ptr
+        READ ptr.coeff, ptr.pow
+
+        IF i = 0 THEN
+            SET head = ptr
+            SET ptr.next = NULL
+            SET temp = ptr
+        ELSE
+            SET temp.next = ptr
+            SET ptr.next = NULL
+            SET temp = ptr
+        END IF
+
+        IF ptr.pow > m THEN
+            SET m = ptr.pow
+        END IF
+    END FOR
+
+    INCREMENT degree BY m
+
+    RETURN head
+END PROCEDURE
+
+PROCEDURE createPolyFromHash ACCEPTS hash,m
+    DECLARE ptr, temp
+
+    FOR i = 0 TO m
+        IF hash[i] != 0 THEN
+            ALLOCATE ptr
+            SET ptr.coeff = hash[i]
+            SET ptr.pow = i
+            SET ptr.next = NULL
+
+            IF temp = NULL THEN
+                SET poly3 = ptr
+                SET temp = ptr
+            ELSE
+                SET temp.next = ptr
+                SET temp = ptr
+            END IF
+        END IF
+    END FOR
+END PROCEDURE
+
+PROCEDURE displayPoly ACCEPTS head
+    DECLARE ptr
+
+    SET ptr = head
+
+    WHILE ptr != NULL
+        IF ptr.next == NULL THEN
+            PRINT ptr.coeff + "x^" + ptr.pow
+            BREAK
+        END IF
+
+        PRINT ptr.coeff + "x^" + ptr.pow + " + "
+        SET ptr = ptr.next
+    END WHILE
+END PROCEDURE
+
+PROCEDURE multiplyPoly ACCEPTS head1,head2,m
+    DECLARE ptr1, ptr2
+    DECLARE hash[m+1]
+
+    FOR i = 0 TO m
+        SET hash[i] = 0
+    END FOR
+
+    FOR ptr1 = head1 TO ptr1 != NULL STEP ptr1 = ptr1.next
+        FOR ptr2 = head2 TO ptr2 != NULL STEP ptr2 = ptr2.next
+            SET c = ptr1.coeff * ptr2.coeff
+            SET p = ptr1.pow + ptr2.pow
+            INCREMENT hash[p] BY c
+        END FOR
+    END FOR
+
+    CALL createPolyFromHash(hash, m)
+END PROCEDURE
+
+PROCEDURE main()
+    SET poly1 = CALL createPoly(poly1)
+    SET poly2 = CALL createPoly(poly2)
+
+    CALL displayPoly(poly1)
+    CALL displayPoly(poly2)
+
+    CALL multiplyPoly(poly1, poly2, degree)
+
+    CALL displayPoly(poly3)
+END PROCEDURE
+
+```
+
