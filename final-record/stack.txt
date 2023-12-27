@@ -23,7 +23,7 @@ END PROCEDURE
 PROCEDURE PUSH ACCEPTS element
     IF !ISFULL
         SET top = top + 1
-        INPUT stack[top]
+        SET stack[top] = element
     ELSE
         PRINT "Stack overflow"
     END IF
