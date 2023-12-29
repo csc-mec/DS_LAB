@@ -1,20 +1,20 @@
 PROGRAM BUBBLE SORT
 PROCEDURE MAIN
-INPUT size of array n
-INPUT array A[n]
-FOR i=0 to i<n-1
-  FOR j=0 to j=n-i-1
-    IF A[j]>A[j+1]
-      SET  temp=A[j]
-      SET  A[j]=A[j+1]
-      SET  A[j+1]=temp
-    END IF
-    INCREMENT j
-  END FOR
-INCREMENT i
-END FOR
-PRINT sorted array
-END
+    INPUT size of array n
+    INPUT array A[n]
+    FOR i=0 to i<n-1
+        FOR j=0 to j=n-i-1
+            IF A[j]>A[j+1]
+                SET  temp=A[j]
+                SET  A[j]=A[j+1]
+                SET  A[j+1]=temp
+            END IF
+            INCREMENT j
+        END FOR
+        INCREMENT i
+    END FOR
+    PRINT A
 END PROCEDURE 
+END PROGRAM
 
 
