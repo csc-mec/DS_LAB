@@ -1,0 +1,74 @@
+PROGRAM CircularQueue
+PROCEDURE main
+    DECLARE INT max
+    READ max
+    DECLARE INT queue[max]; 
+    DECLARE INT front, rear
+    SET front = -1, rear= -1
+
+    PROCEDURE ENQUEUE ACCEPTS item
+        IF front=-1 AND rear=-1 THEN
+            SET front=rear=0;
+            SET queue[rear]=item
+        ELSE IF (rear+1)%max=front
+            PRINT "QUEUE IS FULL"
+        ELSE 
+            SET rear=(rear+1)%max
+            SET queue[rear]=item
+        END IF
+    END PROCEDURE
+
+    PROCEDURE DEQUEUE
+        DECLARE element
+        IF front=-1 AND rear=-1 THEN
+            PRINT "QUEUE IS EMPTY"
+        ELSE IF front=rear THEN
+            PRINT "Element dequeued is" queue[front]
+            SET front=rear=-1
+        ELSE
+            PRINT "Element dequeued is" queue[front]
+            SET front=(front+1)%max
+        END IF
+    END PROCEDURE
+
+    PROCEDURE DISPLAY
+        DECLARE INT i=front
+        IF front=-1 and rear=-1 THEN
+            PRINT "QUEUE IS EMPTY"
+        ELSE
+            WHILE i!=rear
+                PRINT queue[i]
+                INCREMENT i=(i+1)%max;
+            END WHILE
+        PRINT queue[rear]
+        END IF
+    END PROCEDURE
+
+    DECLARE INT s=1
+    WHILE s
+        PRINT "1. ENQUEUE 2. DEQUEUE 3. DISPLAY 4. EXIT"
+        DECLARE INT ch
+        READ ch
+        CASE ch OF
+            1:
+                DECLARE INT item
+                PRINT "ENTER ITEM TO BE INSERTED : "
+                READ item
+                CALL ENQUEUE(item)
+                BREAK
+            2:
+                CALL DEQUEUE
+                BREAK
+            3:
+                CALL DISPLAY
+                BREAK
+            4:
+                PRINT "EXIT"
+                SET s=0
+                BREAK
+            DEFAULT:
+                PRINT "INVALID CHOICE"
+        END SWITCH
+    END WHILE    
+END PROCEDURE      
+END PROGRAM
