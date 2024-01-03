@@ -1,4 +1,3 @@
-
 PROGRAM binary_tree_traversal
 
 PROCEDURE get_right_child ACCEPTS index
@@ -35,9 +34,9 @@ END PROCEDURE
 
 PROCEDURE inorder ACCEPTS index
     IF index >= 0 AND tree[index] != '\0'
-        inorder(get_left_child(index))
+        CALL inorder(get_left_child(index))
         PRINT tree[index]
-        inorder(get_right_child(index))
+        CALL inorder(get_right_child(index))
     END IF
 END PROCEDURE
 
