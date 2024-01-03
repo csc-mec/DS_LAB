@@ -1,19 +1,25 @@
-### POLYNOMIAL MULTIPLICATION USING LINKED LIST
-```
-DECLARE degree 
+PROGRAM POLYNOMIAL_MULTI
+
 SET degree = 0
 
+STRUCTURE Node
+    DECLARE coeff
+    DECLARE pow
+    DECLARE Node POINTER next
+END STRUCTURE
+
+SET poly1 = NULL
+SET poly2 = NULL
+SET poly3 = NULL
+
 PROCEDURE createPoly ACCEPTS head
-    DECLARE n, i, m
-    DECLARE ptr, temp
-
+    SET temp = head
     READ n
-
     FOR i = 0 TO n - 1
         ALLOCATE ptr
         READ ptr.coeff, ptr.pow
 
-        IF i = 0 THEN
+        IF i = 0
             SET head = ptr
             SET ptr.next = NULL
             SET temp = ptr
@@ -23,27 +29,23 @@ PROCEDURE createPoly ACCEPTS head
             SET temp = ptr
         END IF
 
-        IF ptr.pow > m THEN
+        IF ptr.pow > m
             SET m = ptr.pow
         END IF
     END FOR
-
     INCREMENT degree BY m
-
     RETURN head
 END PROCEDURE
 
 PROCEDURE createPolyFromHash ACCEPTS hash,m
-    DECLARE ptr, temp
-
+    SET temp = poly3
     FOR i = 0 TO m
         IF hash[i] != 0 THEN
             ALLOCATE ptr
             SET ptr.coeff = hash[i]
             SET ptr.pow = i
             SET ptr.next = NULL
-
-            IF temp = NULL THEN
+            IF temp = NULL
                 SET poly3 = ptr
                 SET temp = ptr
             ELSE
@@ -55,10 +57,7 @@ PROCEDURE createPolyFromHash ACCEPTS hash,m
 END PROCEDURE
 
 PROCEDURE displayPoly ACCEPTS head
-    DECLARE ptr
-
     SET ptr = head
-
     WHILE ptr != NULL
         IF ptr.next == NULL THEN
             PRINT ptr.coeff + "x^" + ptr.pow
@@ -89,7 +88,7 @@ PROCEDURE multiplyPoly ACCEPTS head1,head2,m
     CALL createPolyFromHash(hash, m)
 END PROCEDURE
 
-PROCEDURE main()
+PROCEDURE main
     SET poly1 = CALL createPoly(poly1)
     SET poly2 = CALL createPoly(poly2)
 
@@ -100,6 +99,6 @@ PROCEDURE main()
 
     CALL displayPoly(poly3)
 END PROCEDURE
+END PROGRAM
 
-```
 

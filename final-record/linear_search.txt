@@ -14,10 +14,10 @@ PROCEDURE MAIN
     READ array[size]
     READ key
     SET index = LINEARSEARCH(array, size, key)
-    IF index != -1
-        PRINT "Element found at index ", index
-    ELSE
+    IF index == -1
         PRINT "Element not found"
+    ELSE
+        PRINT "Element found at index ",index
     END IF
 END PROCEDURE
 
