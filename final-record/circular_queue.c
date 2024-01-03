@@ -4,7 +4,7 @@
 int main() {
     int c, item, front = -1, rear = -1;
     int max;
-    printf("enter size of queue");
+    printf("enter size of queue : ");
     scanf("%d", &max);
     int queue[max];
 
@@ -13,7 +13,7 @@ int main() {
             front = rear = 0;
             queue[rear] = item;
         } else if((rear + 1) % max == front) {
-            printf("Queue is full");
+            printf("Queue is full\n");
         } else {
             rear = (rear + 1) % max;
             queue[rear] = item;
@@ -22,12 +22,12 @@ int main() {
 
     void dequeue() {
         if(front == -1 && rear == -1) {
-            printf("Queue is empty");
+            printf("Queue is empty \n");
         } else if(front == rear) {
-            printf("Element dequeued is:%d", queue[front]);
+            printf("Element dequeued is:%d\n", queue[front]);
             front = rear = -1;
         } else {
-            printf("Element dequeued is:%d", queue[front]);
+            printf("Element dequeued is:%d\n", queue[front]);
             front = (front + 1) % max;
         }
     }
@@ -35,7 +35,7 @@ int main() {
     void display() {
         int i = front;
         if(front == -1 && rear == -1) {
-            printf("Queue is empty");
+            printf("Queue is empty \n");
         }
         else {
             printf("Elements in a queue are: ");
@@ -43,17 +43,17 @@ int main() {
                 printf("%d ", queue[i]);
                 i = (i + 1) % max;
             }
-            printf("%d", queue[rear]);
+            printf("%d\n", queue[rear]);
         }
     }
     int ch;
+    printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\n");
     while(1){
-        printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\n");
-        printf("Enter your choice:");
+        printf("Enter your choice : ");
         scanf("%d", &ch);
         switch(ch) {
             case 1:
-                printf("Enter the element to be inserted:");
+                printf("Enter the element to be inserted : ");
                 scanf("%d", &item);
                 enqueue(item);
                 break;
@@ -66,7 +66,7 @@ int main() {
             case 4:
                 exit(0);
             default:
-                printf("Invalid choice");
+                printf("Invalid choice \n");
         }
     }
 }

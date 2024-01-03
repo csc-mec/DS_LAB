@@ -1,13 +1,11 @@
-PROGRAM CircularQueue
-PROCEDURE main
-    DECLARE INT max
+PROGRAM CIRCULARQUEUE
+PROCEDURE MAIN
     READ max
-    DECLARE INT queue[max]; 
-    DECLARE INT front, rear
-    SET front = -1, rear= -1
+    DECLARE queue[max] 
+    SET front = -1, rear = -1
 
     PROCEDURE ENQUEUE ACCEPTS item
-        IF front=-1 AND rear=-1 THEN
+        IF front=-1 AND rear=-1
             SET front=rear=0;
             SET queue[rear]=item
         ELSE IF (rear+1)%max=front
@@ -19,10 +17,9 @@ PROCEDURE main
     END PROCEDURE
 
     PROCEDURE DEQUEUE
-        DECLARE element
-        IF front=-1 AND rear=-1 THEN
+        IF front=-1 AND rear=-1
             PRINT "QUEUE IS EMPTY"
-        ELSE IF front=rear THEN
+        ELSE IF front=rear
             PRINT "Element dequeued is" queue[front]
             SET front=rear=-1
         ELSE
@@ -32,8 +29,8 @@ PROCEDURE main
     END PROCEDURE
 
     PROCEDURE DISPLAY
-        DECLARE INT i=front
-        IF front=-1 and rear=-1 THEN
+        SET i=front
+        IF front=-1 AND rear=-1
             PRINT "QUEUE IS EMPTY"
         ELSE
             WHILE i!=rear
@@ -43,31 +40,17 @@ PROCEDURE main
         PRINT queue[rear]
         END IF
     END PROCEDURE
+    
+    PRINT "1.ENQUEUE 2.DEQUEUE 3.DISPLAY 4.EXIT"
 
-    DECLARE INT s=1
-    WHILE s
-        PRINT "1. ENQUEUE 2. DEQUEUE 3. DISPLAY 4. EXIT"
-        DECLARE INT ch
+    WHILE TRUE
         READ ch
         CASE ch OF
-            1:
-                DECLARE INT item
-                PRINT "ENTER ITEM TO BE INSERTED : "
-                READ item
+            1:  READ item
                 CALL ENQUEUE(item)
-                BREAK
-            2:
-                CALL DEQUEUE
-                BREAK
-            3:
-                CALL DISPLAY
-                BREAK
-            4:
-                PRINT "EXIT"
-                SET s=0
-                BREAK
-            DEFAULT:
-                PRINT "INVALID CHOICE"
+            2:  CALL DEQUEUE
+            3:  CALL DISPLAY
+            4:  EXIT
         END SWITCH
     END WHILE    
 END PROCEDURE      
