@@ -9,7 +9,7 @@ PROCEDURE get_right_child ACCEPTS index
 END PROCEDURE
 
 PROCEDURE get_left_child ACCEPTS index
-    IF tree[index] is not '\0' AND (2 * index + 1) <= complete_node
+    IF tree[index] != '\0' AND (2 * index + 1) <= complete_node
         RETURN 2 * index + 1
     ELSE
         RETURN -1
