@@ -114,8 +114,8 @@ void deleteNode(struct Node** root, int key) {
 int main()
 {
     int ch,key;
+    printf("\n1.Insert\n2.Search\n3.Minimum\n4.Maximum\n5.Inorder\n6.Preorder\n7.Postorder\n8.Delete\n9.Exit\n");
     while(1){
-        printf("\n1.Insert\n2.Search\n3.Minimum\n4.Maximum\n5.Inorder\n6.Preorder\n7.Postorder\n8.Delete\n9.Exit\n");
         printf("Enter your choice:");
         scanf("%d",&ch);
         switch(ch){
