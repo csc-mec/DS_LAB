@@ -1,153 +1,151 @@
 PROGRAM LINKED_LIST
 
-DECLARE STRUCTURE NODE
-    DECLARE INTEGER data
-    DECLARE NODE next
+STRUCTURE NODE
+    Integer data
+    NODE next
 END STRUCTURE
 
-PROCEDURE ADDFRONT ACCEPTS head
-    ALLLOCATE newnode
-    INPUT newnode->data
-    SET newnode->next = head
-    SET head = newnode
-    RETURN head
-END PROCEDURE
 
-PROCEDURE ADDREAR ACCEPTS head
-    ALLLOCATE newnode
-    SET current = head
-    INPUT newnode->data
-    SET newnode->next = NULL
-    IF current == NULL
-        SET head = newnode
-    ELSE
-        WHILE current->next != NULL
-            SET current = current->next
-        END WHILE
-        SET current->next = newnode
-    END IF
-    RETURN head
-END PROCEDURE
+DECLARE Node head, newNode, temp, prev, current
 
-PROCEDURE ADDAFTER ACCEPTS head
-    ALLLOCATE newnode
-    SET current = head
-    INPUT newnode->data
-    INPUT key
-    IF current == NULL
-        PRINT 'List is empty'
-    ELSE
-        WHILE TRUE
-            IF current->data == key
-                SET newnode->next = current->next
-                SET current->next = newnode
-                RETURN;
-            END IF
-            IF current->next == NULL
-                BREAK
-            END IF
-            SET current = current->next
-        END WHILE
-    END IF
-    PRINT 'Cannot find key'
-END PROCEDURE
-
-PROCEDURE DELETEFRONT ACCEPTS head
-    SET temp = head
-    IF head == NULL
-        PRINT 'List is empty'
-    ELSE
-        SET head = current->next
-        FREE temp
-    END IF
-    RETURN head
-END PROCEDURE
-
-PROCEDURE DELETEREAR ACCEPTS head
-    IF head == NULL
-        PRINT 'List is empty'
+PROCEDURE Display
+    IF head = NULL
+        PRINT "LINKED LIST IS EMPTY"
     ELSE
         SET current = head
-        WHILE TRUE
-            IF current->next == NULL
-                SET temp = current
-                SET hed = NULL
-                FREE temp
-                BREAK
-            END IF
-            IF current->next->next == NULL
-                SET temp = current->next
-                SET current->next = NULL
-                FREE temp
-                BREAK
-            END IF
-            SET current = current->next
+        WHILE = not NULL
+            PRINT current.data
+            SET current = current.next
         END WHILE
     END IF
-    RETURN head
 END PROCEDURE
 
-PROCEDURE DELETEKEY ACCEPTS head
-    INPUT key
-    SET temp = head
+PROCEDURE InsertBegin
+    INPUT newNode.data
+    SET newNode.next = NULL
+
+    IF head = NULL
+        SET head = newNode
+        PRINT newNode.data, " was inserted."
+    ELSE
+        SET newNode.next = head
+        SET head = newNode
+        PRINT newNode.data, " was inserted."
+    END IF
+END PROCEDURE
+
+PROCEDURE InsertEnd
+    SET Input newNode.data
+    SET newNode.next = NULL
+
+    IF head = NULL
+        SET head = newNode
+        PRINT newNode.data, " was inserted."
+    ELSE
+        SET temp = head
+        WHILE temp.next != NULL
+            temp = temp.next
+        END WHILE
+        SET temp.next = newNode
+        PRINT newNode.data, " was inserted."
+    END IF
+END PROCEDURE
+
+PROCEDURE InsertPos
+    INPUT pos
+    SET i = 0
+    WHILE current.next != NULL
+        SET current = current.next
+        SET i = i + 1
+    END WHILE
+    IF pos > (i + 1) or pos < 1
+        PRINT "Invalid Position!"
+    ELSE IF pos = 1
+        CALL InsertBegin
+    ELSE
+        INPUT newNode.data
+        SET current = head
+        FOR j FROM 1 TO (pos - 1)
+            SET current = current.next
+        END FOR
+        SET newNode.next = current.next
+        SET current.next = newNode
+    END IF
+END PROCEDURE
+
+PROCEDURE DeleteBegin
+    IF head = NULL
+        PRINT "Linked list is empty. Nothing to delete."
+    ELSE IF head.next = NULL
+        SET temp = head
+        SET head = NULL
+        PRINT temp.data, " was deleted."
+        DEALLOCATE temp
+    ELSE
+        SET temp = head
+        SET head = head.next
+        PRINT temp.data, " was deleted."
+        DEALLOCATE temp
+    END IF
+END PROCEDURE
+
+PROCEDURE DeleteEnd
+    IF head = NULL
+        PRINT "Linked list is empty. Nothing to delete."
+    ELSE IF head.next = NULL
+        SET temp = head
+        SET head = NULL
+        PRINT temp.data, " was deleted."
+        DEALLOCATE temp
+    ELSE
+        SET current = head
+        WHILE current.next != NULL
+            SET prev = current
+            SET current = current.next
+        END WHILE
+        SET prev.next = NULL
+        PRINT current.data, " was deleted."
+        DEALLOCATE current
+    END IF
+END PROCEDURE
+
+PROCEDURE DeletePos
+    Input pos
+    SET i = 0
+    WHILE current.next != NULL
+        SET current = current.next
+        SET i = i + 1
+    END WHILE
     SET current = head
-    IF head == NULL
-        PRINT 'List is empty'
-    ELSE IF head->data == key
-        SET head = head->next
-        FREE temp
-    ELSE
-        WHILE TRUE
-            IF current->next->data == key
-                SET temp = current->next
-                SET current->next = current->next->next
-                FREE temp
-                RETURN head
-            END IF
-            IF current->next == NULL
-                BREAK
-            END IF
-            SET current = current->next
-        END WHILE
-    END IF
-    RETURN head
-END PROCEDURE
 
-PROCEDURE DISPLAY ACCEPTS head
-    IF head == NULL
-        PRINT 'List is empty'
+    IF pos > i or pos < 1
+        PRINT "Invalid Position!"
+    ELSE IF pos = 1
+        CALL DeleteBegin
     ELSE
-        WHILE head != NULL
-            PRINT head->data
-            SET head = head->next
-        END WHILE
+        SET current = head
+        FOR j FROM 1 = pos
+            SET prev = current
+            SET current = current.next
+        END FOR
+        SET prev.next = current.next
+        DEALLOCATE current
     END IF
 END PROCEDURE
 
-PROCEDURE MAIN
-    DECLARE NODE head
-    SET head = NULL
-    PRINT '1. Display'
-    PRINT '2. Add front'
-    PRINT '3. Add rear'
-    PRINT '4. Add after'
-    PRINT '5. Delete front'
-    PRINT '6. Delete rear'
-    PRINT '7. Delete key'
-    PRINT '8. Exit'
-    WHILE TRUE
-        READ choice
+PROCEDURE Main
+    SET choice = -1
+    PRINT "\n1. Display\n2. InsertBegin\n3. InsertEnd\n4. InsertPos\n5. DeleteBegin\n6. DeleteEnd\n7. DeletePos\n8. Exit"
+    WHILE choice != 8
+        INPUT choice
         CASE choice OF
-            1: CALL DISPLAY(head)
-            2: SET head = CALL ADDFRONT(head)
-            3: SET head = CALL ADDREAR(head)
-            4: CALL ADDAFTER(head)
-            5: SET head = CALL DELETEFRONT(head)
-            6: SET head = CALL DELETEREAR(head)
-            7: SET head = CALL DELETEKEY(head)
-            8: EXIT
-        END CASE
+            1: CALL Display
+            2: CALL InsertBegin
+            3: CALL InsertEnd
+            4: CALL InsertPos
+            5: CALL DeleteBegin
+            6: CALL DeleteEnd
+            7: CALL DeletePos
+            8: BREAK
     END WHILE
 END PROCEDURE
-
-END PROGRAM
