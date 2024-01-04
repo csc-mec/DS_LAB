@@ -11,6 +11,7 @@ PROCEDURE partition ACCEPTS array , low , high
             SET array[i] = array[j]
             SET array[j] = temp
         END IF
+        INCREMENT j
     END FOR
     SET temp = array[i + 1]
     SET array[i + 1] = array[high]
@@ -29,10 +30,12 @@ PROCEDURE MAIN
     READ size
     FOR i = 0 TO size - 1
         READ array[i]
+        INCREMENT i
     END FOR
     CALL quick_sort(array , 0 , size - 1)
     FOR i = 0 TO size - 1
         PRINT array[i]
+        INCREMENT i
     END FOR
 END PROCEDURE
 END PROGRAM

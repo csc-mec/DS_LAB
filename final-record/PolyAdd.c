@@ -36,7 +36,7 @@ void main(){
     
     
     printf("The Sum Is: ");
-    for(int i = max; i >= 0; i--){
+    for(int i = max; i > 0; i--){
         if(p1[i].expo == p2[i].expo){
             printf("%d(x^%d) + ", p1[i].coeff + p2[i].coeff, p1[i].expo);
         }
@@ -47,4 +47,14 @@ void main(){
             printf("%d(x^%d) + ", p2[i].coeff, p2[i].expo);
         }
     }
+    if(p1[0].expo == p2[0].expo){
+            printf("%d(x^%d) ", p1[0].coeff + p2[0].coeff, p1[0].expo);
+    }
+    else if(max == a){
+        printf("%d(x^%d) ", p1[0].coeff, p1[0].expo);
+    }
+    else if(max == b){
+        printf("%d(x^%d) ", p2[0].coeff, p2[0].expo);
+    }
+    printf("\n");
 }
