@@ -42,42 +42,40 @@ void peek() {
 
 void display() {
   if (!isEmpty())
-		for (int i = top; i >= 0; i--)
-			printf("%d\n", stack[i]);
+    for (int i = top; i >= 0; i--)
+        printf("%d\n", stack[i]);
   else
    	printf("Stack underflow\n");
 }
 int main() {
  	int choice, element;
-
+    printf("1. Display\n");
+    printf("2. Push\n");
+	printf("3. Pop\n");
+    printf("4. Peek\n");
+    printf("5. Exit\n");
  	while (1) {
-     	printf("1. Display\n");
-     	printf("2. Push\n");
-			printf("3. Pop\n");
-    	printf("4. Peek\n");
-     	printf("5. Exit\n");
     	printf("Enter your choice: ");
     	scanf("%d", &choice);
-
     	switch (choice) {
-				case 1:
-          display();
-          break;
+		case 1:
+            display();
+            break;
        	case 2:
-          printf("Enter element to push: ");
-          scanf("%d", &element);
-          push(element);
-          break;
+            printf("Enter element to push: ");
+            scanf("%d", &element);
+            push(element);
+            break;
        	case 3:
-          pop();
-          break;
-    		case 4:
-          peek();
-          break;
+            pop();
+            break;
+    	case 4:
+            peek();
+            break;
         case 5:
-          return 0;
+            return 0;
         default:
-          printf("Invalid choice\n");
+            rintf("Invalid choice\n");
      	}
 	}
 

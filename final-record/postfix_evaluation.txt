@@ -20,33 +20,28 @@ PROCEDURE ISOPERATOR ACCEPTS  element
 END PROCEDURE
 
 PROCEDURE MAIN
-    READ  postfix expression to C
+    INPUT C
     SET l = length of C
     SET i = 0
     WHILE i!=l
-        IF(! CALL ISOPERATOR(C[i]))
+        IF(!ISOPERATOR(C[i]))
                 SET n = C[i]- '0'
                 CALL PUSH(n)
         ELSE
-             SET O2 = CALL POP()
-             SET O1 = CALL POP()
+             SET O2 = CALL POP
+             SET O1 = CALL POP
              CASE C[i] OF
                    '+':   SET  r= O1 + O2
-                          BREAK
                    '-':   SET  r= O1 – O2
-                          BREAK
                    '*':   SET  r= O1 * O2 
-                          BREAK
                    '/':   SET  r= O1 / O2
-                          BREAK
                    '^':   SET  r= O1 ^ O2
-                          BREAK
              END CASE
              CALL PUSH(r)
         END IF    
         SET i=i+1
     END WHILE
-    SET result = CALL POP()
+    SET result = CALL POP
     PRINT result
 END PROCEDURE
 END PROGRAM
