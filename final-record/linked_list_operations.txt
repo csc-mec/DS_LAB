@@ -1,0 +1,153 @@
+PROGRAM LINKED_LIST
+
+DECLARE STRUCTURE NODE
+    DECLARE INTEGER data
+    DECLARE NODE next
+END STRUCTURE
+
+PROCEDURE ADDFRONT ACCEPTS head
+    ALLLOCATE newnode
+    INPUT newnode->data
+    SET newnode->next = head
+    SET head = newnode
+    RETURN head
+END PROCEDURE
+
+PROCEDURE ADDREAR ACCEPTS head
+    ALLLOCATE newnode
+    SET current = head
+    INPUT newnode->data
+    SET newnode->next = NULL
+    IF current == NULL
+        SET head = newnode
+    ELSE
+        WHILE current->next != NULL
+            SET current = current->next
+        END WHILE
+        SET current->next = newnode
+    END IF
+    RETURN head
+END PROCEDURE
+
+PROCEDURE ADDAFTER ACCEPTS head
+    ALLLOCATE newnode
+    SET current = head
+    INPUT newnode->data
+    INPUT key
+    IF current == NULL
+        PRINT 'List is empty'
+    ELSE
+        WHILE TRUE
+            IF current->data == key
+                SET newnode->next = current->next
+                SET current->next = newnode
+                RETURN;
+            END IF
+            IF current->next == NULL
+                BREAK
+            END IF
+            SET current = current->next
+        END WHILE
+    END IF
+    PRINT 'Cannot find key'
+END PROCEDURE
+
+PROCEDURE DELETEFRONT ACCEPTS head
+    SET temp = head
+    IF head == NULL
+        PRINT 'List is empty'
+    ELSE
+        SET head = current->next
+        FREE temp
+    END IF
+    RETURN head
+END PROCEDURE
+
+PROCEDURE DELETEREAR ACCEPTS head
+    IF head == NULL
+        PRINT 'List is empty'
+    ELSE
+        SET current = head
+        WHILE TRUE
+            IF current->next == NULL
+                SET temp = current
+                SET hed = NULL
+                FREE temp
+                BREAK
+            END IF
+            IF current->next->next == NULL
+                SET temp = current->next
+                SET current->next = NULL
+                FREE temp
+                BREAK
+            END IF
+            SET current = current->next
+        END WHILE
+    END IF
+    RETURN head
+END PROCEDURE
+
+PROCEDURE DELETEKEY ACCEPTS head
+    INPUT key
+    SET temp = head
+    SET current = head
+    IF head == NULL
+        PRINT 'List is empty'
+    ELSE IF head->data == key
+        SET head = head->next
+        FREE temp
+    ELSE
+        WHILE TRUE
+            IF current->next->data == key
+                SET temp = current->next
+                SET current->next = current->next->next
+                FREE temp
+                RETURN head
+            END IF
+            IF current->next == NULL
+                BREAK
+            END IF
+            SET current = current->next
+        END WHILE
+    END IF
+    RETURN head
+END PROCEDURE
+
+PROCEDURE DISPLAY ACCEPTS head
+    IF head == NULL
+        PRINT 'List is empty'
+    ELSE
+        WHILE head != NULL
+            PRINT head->data
+            SET head = head->next
+        END WHILE
+    END IF
+END PROCEDURE
+
+PROCEDURE MAIN
+    DECLARE NODE head
+    SET head = NULL
+    PRINT '1. Display'
+    PRINT '2. Add front'
+    PRINT '3. Add rear'
+    PRINT '4. Add after'
+    PRINT '5. Delete front'
+    PRINT '6. Delete rear'
+    PRINT '7. Delete key'
+    PRINT '8. Exit'
+    WHILE TRUE
+        READ choice
+        CASE choice OF
+            1: CALL DISPLAY(head)
+            2: SET head = CALL ADDFRONT(head)
+            3: SET head = CALL ADDREAR(head)
+            4: CALL ADDAFTER(head)
+            5: SET head = CALL DELETEFRONT(head)
+            6: SET head = CALL DELETEREAR(head)
+            7: SET head = CALL DELETEKEY(head)
+            8: EXIT
+        END CASE
+    END WHILE
+END PROCEDURE
+
+END PROGRAM
