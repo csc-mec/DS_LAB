@@ -1,20 +1,24 @@
 PROGRAM PRIORITY_QUEUE
 DEFINE SIZE 5
+
 DECLARE ARRAY queue[SIZE]
 SET front = -1
 SET rear = -1
+
 PROCEDURE ISEMPTY
     RETURN front == -1 OR front>rear
 END PROCEDURE
+
 PROCEDURE ISFULL
     RETURN rear == SIZE - 1
 END PROCEDURE
+
 PROCEDURE ENQUEUE
     IF ISEMPTY
         SET front = 0
         SET rear = 0
         READ key
-        SET queue[j] = key
+        SET queue[rear] = key
     ELSE IF ISFULL
         PRINT "Queue Overflow"
     ELSE
@@ -28,6 +32,7 @@ PROCEDURE ENQUEUE
         SET queue[j + 1] = key
     END IF
 END PROCEDURE
+
 PROCEDURE DEQUEUE
     IF ISEMPTY
         PRINT "Queue underflow"
@@ -36,6 +41,7 @@ PROCEDURE DEQUEUE
         SET front = front + 1
     END IF
 END PROCEDURE
+
 PROCEDURE SIZE 
     IF ISEMPTY
         PRINT "Queue underflow"
@@ -43,6 +49,7 @@ PROCEDURE SIZE
         PRINT rear - front + 1
     END IF
 END PROCEDURE
+
 PROCEDURE DISPLAY
     IF !ISEMPTY
         FOR i = front TO rear
@@ -53,12 +60,12 @@ PROCEDURE DISPLAY
     END IF
 END PROCEDURE
 PROCEDURE MAIN
+    PRINT "1. Display"
+    PRINT "2. Enqueue"
+    PRINT "3. Dequeue"
+    PRINT "4. Size"
+    PRINT "5. Exit"
     WHILE TRUE
-        PRINT "1. Display"
-        PRINT "2. Enqueue"
-        PRINT "3. Dequeue"
-        PRINT "4. Size"
-        PRINT "5. Exit"
         READ choice
         CASE choice OF
             1: CALL DISPLAY

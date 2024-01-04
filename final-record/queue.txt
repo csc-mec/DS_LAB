@@ -18,7 +18,7 @@ PROCEDURE ENQUEUE ACCEPTS element
     IF ISEMPTY
         SET front = 0
         SET rear = 0
-        INPUT queue[rear]
+        SET queue[rear] = element
     ELSE IF ISFULL
         PRINT "Queue overflow"
     ELSE
@@ -33,7 +33,7 @@ PROCEDURE DEQUEUE
     ELSE IF front > rear
         PRINT "Cannot dequeue"
     ELSE
-       	PRINT queue[front] " is dequeued"
+       	PRINT queue[front] , " is dequeued"
         SET front = front + 1
     END IF
 END PROCEDURE
@@ -57,12 +57,12 @@ PROCEDURE DISPLAY
 END PROCEDURE
 
 PROCEDURE MAIN
+    PRINT "1. Display"
+    PRINT "2. Enqueue"
+    PRINT "3. Dequeue"
+    PRINT "4. Size"
+    PRINT "5. Exit"
     WHILE TRUE
-        PRINT "1. Display"
-        PRINT "2. Enqueue"
-        PRINT "3. Dequeue"
-        PRINT "4. Size"
-        PRINT "5. Exit"
         READ choice
         CASE choice OF
             1: CALL DISPLAY

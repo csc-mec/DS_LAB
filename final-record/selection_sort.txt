@@ -9,7 +9,7 @@ PROCEDURE MAIN
                 SET A[i]=A[j]
                 SET A[j]=temp
             END IF
-        INCREMENT j
+            INCREMENT j
         END FOR
         INCREMENT i
     END FOR
