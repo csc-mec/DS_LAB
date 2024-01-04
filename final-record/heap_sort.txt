@@ -22,11 +22,13 @@ END PROCEDURE
 
 PROCEDURE heapsort ACCEPTS array,size
     FOR i=size/2 -1 TO 0
-         CALL maxheapify(array,size,i) 
+         CALL maxheapify(array,size,i)
+         INCREMENT i 
     END FOR 
     FOR i=size-1 TO 1
         CALL swap(*array[0],*array[i])
         CALL maxheapify(array,i,0)
+        INCREMENT i
     END FOR 
 END PROCEDURE
 

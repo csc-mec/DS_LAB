@@ -40,9 +40,9 @@ PROCEDURE merge_sort ACCEPTS array , low , high
 END PROCEDURE
 PROCEDURE MAIN
     DECLARE ARRAY array[SIZE]
-    READ size
+    INPUT size
     FOR i = 0 TO size - 1
-        READ array[i]
+        INPUT array[i]
         INCREMENT i
     END FOR
     CALL merge_sort(array , 0 , size - 1)

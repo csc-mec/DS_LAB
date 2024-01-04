@@ -110,20 +110,17 @@ PROCEDURE FUNCTION maximum(root)
     RETURN root.key
 END PROCEDURE
 
-PROCEDURE FUNCTION main() 
+PROCEDURE FUNCTION main() END FOR
     SET INTEGER ch, key
     PRINT "1.Insert 2.Search 3.Minimum 4.Maximum 5.Inorder 6.Preorder 7.Postorder 8.Delete 9.Exit"
     WHILE TRUE
-        PRINT "Enter your choice:"
-        READ ch
+        INPUT ch
         CASE ch OF
             1:
-                PRINT "Enter the key:"
-                READ key
+                INPUT key
                 SET root = CALL insert(root, key)
             2:
-                PRINT "Enter the key:"
-                READ key
+                INPUT key
                 SET temp = CALL search(root, key)
                 IF temp == NULL
                     PRINT "Key not found"
@@ -141,8 +138,7 @@ PROCEDURE FUNCTION main()
             7:
                 CALL postorder(root)
             8:
-                PRINT "Enter the key:"
-                READ key
+                INPUT key
                 CALL delete(root, key)
             9:
                 EXIT program

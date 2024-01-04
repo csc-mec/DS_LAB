@@ -5,7 +5,7 @@ PROCEDURE create(N, M, T)
   ASSIGN n AND m TO T[0][0] AND T[0][1] RESPECTIVELY
   FOR i FROM 0 TO n
       FOR j FROM 0 TO m
-          READ e
+          INPUT e
           IF e != 0
               INCREMENT k BY 1
               SET T[k][0]=i
@@ -82,8 +82,8 @@ END PROCEDURE
 
 PROCEDURE MAIN
   DECLARE VARIABLES n1, m1, n2, m2, k1, k2, k3
-  READ n1 AND m1
-  READ n2 AND m2
+  INPUT n1 AND m1
+  INPUT n2 AND m2
   DECLARE ARRAYS T1, T2, T3
   IF n1 != n2 OR m1 != m2
       PRINT "ADDITION NOT POSSIBLE"

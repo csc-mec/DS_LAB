@@ -5,14 +5,15 @@ PROCEDURE LINEARSEARCH ACCEPTS array, size, key
         IF array[i] = key
             RETURN i
         END IF
+        INCREMENT i
     END FOR
     RETURN -1
 END PROCEDURE
 
 PROCEDURE MAIN
-    READ size
-    READ array[size]
-    READ key
+    INPUT size
+    INPUT array[size]
+    INPUT key
     SET index = LINEARSEARCH(array, size, key)
     IF index == -1
         PRINT "Element not found"

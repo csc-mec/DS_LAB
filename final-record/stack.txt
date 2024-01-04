@@ -50,6 +50,7 @@ PROCEDURE DISPLAY
     	IF !ISEMPTY
         	FOR i = top TO 0 
             	PRINT stack[i]
+                INCREMENT i
         	END FOR
     	ELSE
         	PRINT "Stack underflow"
@@ -63,10 +64,10 @@ PROCEDURE MAIN
 	PRINT "4. Peek"
 	PRINT "5. Exit"
     	WHILE TRUE
-        	READ choice
+        	INPUT choice
         	CASE choice OF
                 1: CALL DISPLAY
-                2: READ element
+                2: INPUT element
                    CALL PUSH(element)
                 3: CALL POP
                 4: CALL PEEK

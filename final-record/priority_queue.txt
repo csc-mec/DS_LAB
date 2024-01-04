@@ -54,6 +54,7 @@ PROCEDURE DISPLAY
     IF !ISEMPTY
         FOR i = front TO rear
             PRINT queue[i]
+            INCREMENT i
         END FOR
     ELSE
         PRINT "Queue underflow"
