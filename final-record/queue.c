@@ -53,13 +53,12 @@ void display() {
 }
 int main() {
     int choice, element;
-
+    printf("1. Display\n");
+    printf("2. Enqueue\n");
+    printf("3. Dequeue\n");
+    printf("4. Size\n");
+    printf("5. Exit\n");
     while (1) {
-        printf("1. Display\n");
-        printf("2. Enqueue\n");
-        printf("3. Dequeue\n");
-        printf("4. Size\n");
-        printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 

@@ -57,12 +57,12 @@ PROCEDURE DISPLAY
 END PROCEDURE
 
 PROCEDURE MAIN
+    PRINT "1. Display"
+    PRINT "2. Enqueue"
+    PRINT "3. Dequeue"
+    PRINT "4. Size"
+    PRINT "5. Exit"
     WHILE TRUE
-        PRINT "1. Display"
-        PRINT "2. Enqueue"
-        PRINT "3. Dequeue"
-        PRINT "4. Size"
-        PRINT "5. Exit"
         READ choice
         CASE choice OF
             1: CALL DISPLAY
