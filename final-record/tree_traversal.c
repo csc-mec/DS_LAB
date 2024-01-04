@@ -44,31 +44,6 @@ void postorder(struct Node* root)
     }
 }
 
-void deleteNode(struct Node** root, int key) {
-    if (*root == NULL) return;
-    if (key < (*root)->key)
-        deleteNode(&((*root)->left), key);
-    else if (key > (*root)->key)
-        deleteNode(&((*root)->right), key);
-    else {
-        if ((*root)->left == NULL) {
-            struct Node *temp = *root;
-            *root = (*root)->right;
-            free(temp);
-        }
-        else if ((*root)->right == NULL) {
-            struct Node *temp = *root;
-            *root = (*root)->left;
-            free(temp);
-        }
-        else {
-            int minKey = minimum((*root)->right);
-            (*root)->key = minKey;
-            deleteNode(&((*root)->right), minKey);
-        }
-    }
-}
-
 struct Node* insert(struct Node* node, int key)
 {
     if (node == NULL)
@@ -108,6 +83,31 @@ int maximum(struct Node* root){
             root=root->right;
         }
         return root->key;
+    }
+}
+
+void deleteNode(struct Node** root, int key) {
+    if (*root == NULL) return;
+    if (key < (*root)->key)
+        deleteNode(&((*root)->left), key);
+    else if (key > (*root)->key)
+        deleteNode(&((*root)->right), key);
+    else {
+        if ((*root)->left == NULL) {
+            struct Node *temp = *root;
+            *root = (*root)->right;
+            free(temp);
+        }
+        else if ((*root)->right == NULL) {
+            struct Node *temp = *root;
+            *root = (*root)->left;
+            free(temp);
+        }
+        else {
+            int minKey = minimum((*root)->right);
+            (*root)->key = minKey;
+            deleteNode(&((*root)->right), minKey);
+        }
     }
 }
 
@@ -155,6 +155,10 @@ int main()
                 break;
             case 9:
                 exit(0);
+        }
+    }
+    return 0;
+}
         }
     }
     return 0;
