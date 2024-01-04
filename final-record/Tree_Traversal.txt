@@ -116,12 +116,12 @@ PROCEDURE FUNCTION main()
     WHILE TRUE
         PRINT "Enter your choice:"
         READ ch
-        SWITCH ch
-            CASE 1:
+        CASE ch OF
+            1:
                 PRINT "Enter the key:"
                 READ key
                 SET root = CALL insert(root, key)
-            CASE 2:
+            2:
                 PRINT "Enter the key:"
                 READ key
                 SET temp = CALL search(root, key)
@@ -130,23 +130,23 @@ PROCEDURE FUNCTION main()
                 ELSE
                     PRINT "Key found"
                 END IF
-            CASE 3:
+            3:
                 PRINT "Minimum key is ", CALL minimum(root)
-            CASE 4:
+            4:
                 PRINT "Maximum key is ", CALL maximum(root)
-            CASE 5:
+            5:
                 CALL inorder(root)
-            CASE 6:
+            6:
                 CALL preorder(root)
-            CASE 7:
+            7:
                 CALL postorder(root)
-            CASE 8:
+            8:
                 PRINT "Enter the key:"
                 READ key
                 CALL delete(root, key)
-            CASE 9:
+            9:
                 EXIT program
-        END SWITCH
+        END CASE
     RETURN 0
     END WHILE
 END PROCEDURE
