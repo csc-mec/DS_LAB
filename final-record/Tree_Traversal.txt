@@ -113,8 +113,8 @@ END PROCEDURE
 PROCEDURE FUNCTION main() 
     SET INTEGER ch, key
     PRINT "1.Insert 2.Search 3.Minimum 4.Maximum 5.Inorder 6.Preorder 7.Postorder 8.Delete 9.Exit"
-    PRINT "Enter your choice:"
     WHILE TRUE
+        PRINT "Enter your choice:"
         READ ch
         SWITCH ch
             CASE 1:
