@@ -38,7 +38,7 @@ void display()
     temp=head;
     while(temp!=NULL)
     {
-        printf("%d",temp->data);
+        printf("%d ",temp->data);
         temp=temp->next;
     }
     printf("\n");
@@ -121,7 +121,9 @@ void addbetween()
         newnode->prev=temp;
         newnode->next=temp->next;
         temp->next=newnode;
-        newnode->next->prev=newnode;
+        if(newnode->next!=NULL){
+            newnode->next->prev=newnode;
+        }
     }
     
 }
@@ -170,47 +172,25 @@ void delbetween()
 
 void main()
 {
-int ch;
-int flag=1;
-printf("1.CREATE N NODES\n2.DISPLAY\n3.INSERTION AT FRONT\n4.INSERTION AT REAR\n5.INSERTION IN BETWEEN\n6.DELETION AT FRONT\n7.DELETION AT REAR\n8.DELETION IN BETWEEN\n9.EXIT\n");
-while(flag==1)
-{
-    
-    printf("ENTER CHOICE: ");
-    scanf("%d",&ch);
-    switch(ch)
+    int ch;
+    int flag=1;
+    printf("1.CREATE N NODES\n2.DISPLAY\n3.INSERTION AT FRONT\n4.INSERTION AT REAR\n5.INSERTION IN BETWEEN\n6.DELETION AT FRONT\n7.DELETION AT REAR\n8.DELETION IN BETWEEN\n9.EXIT\n");
+    while(flag==1)
     {
-        case 1:
-        create();
-        break;
-        case 2:
-        display();
-        break;
-        
-        case 3:
-        addfront();
-        break;
-        case 4:
-        addrear();
-        break;
-        case 5:
-        addbetween();
-        break;
-        case 6:
-        delfront();
-        break;
-        case 7:
-        delrear();
-        break;
-        case 8:
-        delbetween();
-        break;
-        case 9:
-        flag=0;
-        break;
-        default:
-        printf("invalid ch");
-        break;
-        
+        printf("ENTER CHOICE: ");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:create();break;
+            case 2:display();break;
+            case 3:addfront();break;
+            case 4:addrear();break;
+            case 5:addbetween();break;
+            case 6:delfront();break;
+            case 7:delrear();break;
+            case 8:delbetween();break;
+            case 9:flag=0;break;
+            default:printf("invalid ch");break;  
+        }
     }
-}}
+}
