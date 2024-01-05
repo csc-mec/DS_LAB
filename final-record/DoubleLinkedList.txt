@@ -1,0 +1,191 @@
+PROGRAM LINKED LIST
+
+STRUCTURE node
+    Declare node prev
+    Declare integer data
+    Declare node next
+End STRUCTURE
+
+Declare  global variables: head,tail,newnode,temp,current,back,ptr
+
+Set head=tail=NULL
+
+Procedure create_n_nodes:
+ 
+Display "ENTER NUMBER OF NODES"
+input n
+
+ for i from 0 to n:
+    Allocate memory for newnode
+    Display "ENTER DATA"
+    Input newnode->data
+    Set newnode->next=NULL
+    Set newnode->prev=NULL   
+    
+    if head==NULL && tail==NULL
+         Set head=tail=newnode
+    else
+         Set tail->next=newnode
+             newnode->prev=tail
+             tail=newnode
+    END if
+  END for
+END PROCEDURE
+
+
+
+Procedure display:
+ 
+ if head==NULL
+     Display"LINKED LIST EMPTY"
+ else
+     while temp!=NULL
+        Display temp->data
+        Set temp=temp->next
+     END while
+ END if
+END Procedure
+
+
+Procedure addfront:
+
+Display "ENTER ELEMENT TO BE ADDED IN THE FRONT"
+Input newnode->data
+Set newnode->next=NULL
+Set newnode->prev=NULL 
+
+ if head==NULL
+     Set head=tail=newnode
+ else
+     Set head->prev=newnode
+         newnode->next=head
+         head=newnode
+ END if
+END Procedure
+
+
+Procedure addrear:
+
+Display "ENTER ELEMENT TO BE ADDED IN THE END"
+Input newnode->data
+Set newnode->next=NULL
+Set newnode->prev=NULL 
+
+ if head==NULL && tail==NULL
+     Set head=tail=newnode
+ else
+     Set tail->next=newnode
+         newnode->prev=tail
+         tail=newnode
+ END if
+END Procedure
+
+Procedure addbetween:
+
+Declare Integer count
+Set temp=head
+ while temp!=NULL
+   set temp=temp->next
+   count++
+ END while
+
+Display "ENTER POSITION WHERE ELEMENT IS TO BE ADDED"
+Display "ENTER ELEMENT"
+Input newnode->data
+Set newnode->next=NULL
+Set newnode->prev=NULL 
+
+ while i<postion-1
+   Set temp=temp->next
+   increament i
+ Set newnode->prev=temp
+     newnode->next-temp->next
+     temp->next=newnode
+     newnode->next->prev=newnode
+ END while     
+End Procedure
+
+
+Procedure deletefront:
+
+Set temp=head
+    head=head->next
+    head->prev=NULL
+    Deallocate temp
+Display "DELETED ELEMENT IS temp->data"
+
+END procedure
+
+
+Procedure deleterear:
+
+Set temp=head
+ while temp->next!=NULL
+    Set back=temp
+        temp=temp->next
+ END while
+
+ back->next=NULL
+ Display "DELETED ELEMENT IS temp->data"
+ Deallocate temp
+ 
+END Procedure       
+
+Procedure deletebetween:
+
+Display "ENTER POSITION"
+Set temp=head
+ while(i<pos-1)
+   Set temp=temp->next
+   increament i
+ END while
+
+ ptr=temp->next
+ temp->next=ptr->next
+ Display "DELETED ELEMENT IS ptr->data"
+ Deallocate ptr
+ 
+END Procedure
+
+
+Procedure MAIN:
+
+Declare Integer choice
+Declare Integer flag=1
+       Display "1.CREATE N NODES
+                2.DISPLAY
+                3.INSERTION AT FRONT
+                4.INSERTION AT REAR
+                5.INSERTION IN BETWEEN
+                6.DELETION AT FRONT
+                7.DELETION AT REAR
+                8.DELETION IN BETWEEN
+                9.EXIT 
+       while flag==1
+       Display "ENTER CHOICE"
+        Switch choice
+            case 1:
+                 call create_n_nodes()
+            case 2:
+                 display()
+            case 3:
+                 addfront()
+            case 4:
+                 addrear()
+            case 5:
+                 addbetween()
+            case 6:
+                 deletefront()
+            case 7:
+                 deleterear()
+            case 8:
+                 deletebetween()
+            case 9:
+                 flag=0
+            default: 
+                 Display "INVALID CHOICE"
+        END Switch Case
+       END while
+END Procedure
+
+END PROGRAM
