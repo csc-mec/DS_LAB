@@ -14,6 +14,7 @@ END STRUCTURE
 PROCEDURE init ACCEPTS POINTER HashTable ht
     FOR i = 0 to SIZE - 1
         SET ht->chain[i] = NULL
+        INCREMENT i
     END FOR
 END PROCEDURE
 
@@ -42,6 +43,7 @@ PROCEDURE printHashTable ACCEPTS POINTER HashTable ht
             SET temp = temp->next
         END WHILE
         PRINT "NULL"
+        INCREMENT i
     END FOR
 END PROCEDURE
 
@@ -54,6 +56,7 @@ PROCEDURE main
         PRINT "Enter element " , (i + 1) , ": "
         INPUT val
         CALL insert(&ht, val)
+        INCREMENT i
     END FOR
     CALL printHashTable(&ht)
 END PROCEDURE

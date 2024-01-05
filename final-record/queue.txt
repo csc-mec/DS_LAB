@@ -50,6 +50,7 @@ PROCEDURE DISPLAY
     IF !ISEMPTY
         FOR i = front TO rear
             PRINT queue[i]
+            INCREMENT i
         END FOR
     ELSE
         PRINT "Queue underflow"
@@ -63,10 +64,10 @@ PROCEDURE MAIN
     PRINT "4. Size"
     PRINT "5. Exit"
     WHILE TRUE
-        READ choice
+        INPUT choice
         CASE choice OF
             1: CALL DISPLAY
-            2: CALL READ element
+            2: CALL INPUT element
                CALL ENQUEUE(element)
             3: CALL DEQUEUE
             4: CALL QSIZE

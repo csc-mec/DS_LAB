@@ -17,9 +17,9 @@ PROCEDURE BINARYSEARCH ACCEPTS array, size, key
 END PROCEDURE
 
 PROCEDURE MAIN
-    READ size
-    READ array[size]
-    READ key
+    INPUT size
+    INPUT array[size]
+    INPUT key
     SET index = BINARYSEARCH(array, size, key)
     IF index != -1
         PRINT "Element found at index ", index

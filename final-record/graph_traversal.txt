@@ -70,7 +70,8 @@ PROCEDURE main
             PRINT current.data  -->
             current = current.next
         END WHILE
-    PRINT current.data
+        PRINT current.data
+        INCREMENT i
     END FOR
     DECLARE arrays Stack , visit , Queue[n]
     CALL push (n, Stack, aList[0].data)
@@ -82,6 +83,7 @@ PROCEDURE main
             IF aList[i]→data == high
                 SET current = aList[i]→next
                 END IF
+            INCREMENT i
         END FOR
         WHILE current != NULL
             SET f = 0

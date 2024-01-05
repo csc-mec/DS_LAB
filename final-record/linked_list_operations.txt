@@ -67,6 +67,7 @@ PROCEDURE InsertPos
         SET current = head
         FOR j FROM 1 TO (pos - 1)
             SET current = current.next
+            INCREMENT i
         END FOR
         SET newNode.next = current.next
         SET current.next = newNode
@@ -127,6 +128,7 @@ PROCEDURE DeletePos
         FOR j FROM 1 = pos
             SET prev = current
             SET current = current.next
+            INCREMENT i
         END FOR
         SET prev.next = current.next
         DEALLOCATE current

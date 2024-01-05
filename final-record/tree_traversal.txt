@@ -8,7 +8,7 @@ END STRUCTURE
 SET Node POINTER root = NULL
 SET Node POINTER temp = NULL
 
-PROCEDURE FUNCTION newNode(key)
+PROCEDURE newNode ACCEPTS key
     SET Node POINTER node = Allocate memory for Node
     SET node.key = key
     SET node.left = NULL
@@ -16,7 +16,7 @@ PROCEDURE FUNCTION newNode(key)
     RETURN node
 END PROCEDURE
 
-PROCEDURE FUNCTION inorder(root)
+PROCEDURE inorder ACCEPTS root
     IF root != NULL
         CALL inorder(root.left)
         PRINT root.key
@@ -24,7 +24,7 @@ PROCEDURE FUNCTION inorder(root)
     END IF
 END PROCEDURE
 
-PROCEDURE FUNCTION preorder(root)
+PROCEDURE preorder ACCEPTS root
     IF root != NULL
         PRINT root.key
         CALL preorder(root.left)
@@ -32,7 +32,7 @@ PROCEDURE FUNCTION preorder(root)
     END IF
 END PROCEDURE
 
-PROCEDURE FUNCTION postorder(root)
+PROCEDURE postorder ACCEPTS root
     IF root != NULL
         CALL postorder(root.left)
         CALL postorder(root.right)
@@ -40,7 +40,7 @@ PROCEDURE FUNCTION postorder(root)
     END IF
 END PROCEDURE
 
-PROCEDURE FUNCTION delete(root, key)
+PROCEDURE delete ACCEPTS root, key
     IF root == NULL
         RETURN
     END IF
@@ -68,7 +68,7 @@ PROCEDURE FUNCTION delete(root, key)
     END IF
 END PROCEDURE
 
-PROCEDURE FUNCTION insert(node, key)
+PROCEDURE insert ACCEPTS node, key
     IF node == NULL
         RETURN CALL newNode(key)
     END IF
@@ -80,7 +80,7 @@ PROCEDURE FUNCTION insert(node, key)
     RETURN node
 END PROCEDURE
 
-PROCEDURE FUNCTION search(root, key) 
+PROCEDURE search ACCEPTS root, key 
     IF root == NULL OR root.key == key
         RETURN root
     END IF
@@ -90,7 +90,7 @@ PROCEDURE FUNCTION search(root, key)
     RETURN CALL search(root.left, key)
 END PROCEDURE
 
-PROCEDURE FUNCTION minimum(root) 
+PROCEDURE minimum ACCEPTS root 
     IF root == NULL
         RETURN 0
     END IF
@@ -100,7 +100,7 @@ PROCEDURE FUNCTION minimum(root)
     RETURN root.key
 END PROCEDURE
 
-PROCEDURE FUNCTION maximum(root) 
+PROCEDURE maximum ACCEPTS root
     IF root == NULL
         RETURN 0
     END IF
@@ -110,20 +110,17 @@ PROCEDURE FUNCTION maximum(root)
     RETURN root.key
 END PROCEDURE
 
-PROCEDURE FUNCTION main() 
+PROCEDURE main
     SET INTEGER ch, key
     PRINT "1.Insert 2.Search 3.Minimum 4.Maximum 5.Inorder 6.Preorder 7.Postorder 8.Delete 9.Exit"
     WHILE TRUE
-        PRINT "Enter your choice:"
-        READ ch
+        INPUT ch
         CASE ch OF
             1:
-                PRINT "Enter the key:"
-                READ key
+                INPUT key
                 SET root = CALL insert(root, key)
             2:
-                PRINT "Enter the key:"
-                READ key
+                INPUT key
                 SET temp = CALL search(root, key)
                 IF temp == NULL
                     PRINT "Key not found"
@@ -141,8 +138,7 @@ PROCEDURE FUNCTION main()
             7:
                 CALL postorder(root)
             8:
-                PRINT "Enter the key:"
-                READ key
+                INPUT key
                 CALL delete(root, key)
             9:
                 EXIT program

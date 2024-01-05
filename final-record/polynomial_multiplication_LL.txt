@@ -14,10 +14,10 @@ SET poly3 = NULL
 
 PROCEDURE createPoly ACCEPTS head
     SET temp = head
-    READ n
+    INPUT n
     FOR i = 0 TO n - 1
         ALLOCATE ptr
-        READ ptr.coeff, ptr.pow
+        INPUT ptr.coeff, ptr.pow
 
         IF i = 0
             SET head = ptr
@@ -32,6 +32,7 @@ PROCEDURE createPoly ACCEPTS head
         IF ptr.pow > m
             SET m = ptr.pow
         END IF
+        INCREMENT i
     END FOR
     INCREMENT degree BY m
     RETURN head
@@ -53,6 +54,7 @@ PROCEDURE createPolyFromHash ACCEPTS hash,m
                 SET temp = ptr
             END IF
         END IF
+        INCREMENT i
     END FOR
 END PROCEDURE
 
@@ -75,15 +77,19 @@ PROCEDURE multiplyPoly ACCEPTS head1,head2,m
 
     FOR i = 0 TO m
         SET hash[i] = 0
+        INCREMENT i
     END FOR
 
-    FOR ptr1 = head1 TO ptr1 != NULL STEP ptr1 = ptr1.next
-        FOR ptr2 = head2 TO ptr2 != NULL STEP ptr2 = ptr2.next
+    SET ptr1 = head1
+    WHILE ptr1 != NULL
+        WHILE ptr2 != NULL 
             SET c = ptr1.coeff * ptr2.coeff
             SET p = ptr1.pow + ptr2.pow
             INCREMENT hash[p] BY c
-        END FOR
-    END FOR
+            SET ptr2 = ptr2.next
+        END WHILE
+        SET ptr1 = ptr1.next
+    END WHILE
 
     CALL createPolyFromHash(hash, m)
 END PROCEDURE
