@@ -100,15 +100,15 @@ PROCEDURE SIZE
 END PROCEDURE
 
 PRCEDURE MAIN
+    PRINT "1. Display"
+    PRINT "2. Add rear"
+    PRINT "3. Add front"
+    PRINT "4. Remove rear"
+    PRINT "5. Remove front"
+    PRINT "6. Size"
+    PRINT "7. Exit"
     WHILE TRUE
-        PRINT "1. Display"
-        PRINT "2. Add rear"
-        PRINT "3. Add front"
-        PRINT "4. Remove rear"
-        PRINT "5. Remove front"
-        PRINT "6. Size"
-        PRINT "7. Exit"
-        READ choice
+        INPUT choice
         CASE choice OF
             1: CALL DISPLAY
             2: CALL ADDREAR

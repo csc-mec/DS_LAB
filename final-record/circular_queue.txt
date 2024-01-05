@@ -1,6 +1,6 @@
 PROGRAM CIRCULARQUEUE
 PROCEDURE MAIN
-    READ max
+    INPUT max
     DECLARE queue[max] 
     SET front = -1, rear = -1
 
@@ -44,9 +44,9 @@ PROCEDURE MAIN
     PRINT "1.ENQUEUE 2.DEQUEUE 3.DISPLAY 4.EXIT"
 
     WHILE TRUE
-        READ ch
+        INPUT ch
         CASE ch OF
-            1:  READ item
+            1:  INPUT item
                 CALL ENQUEUE(item)
             2:  CALL DEQUEUE
             3:  CALL DISPLAY

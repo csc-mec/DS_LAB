@@ -13,7 +13,7 @@ struct HashTable{
 };
 
 void init(struct HashTable *ht){
-    for (int i = 0; i < SIZE; i++{
+    for (int i = 0; i < SIZE; i++){
         ht->chain[i] = NULL;
     }
 }

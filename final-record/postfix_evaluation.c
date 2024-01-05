@@ -6,7 +6,7 @@ int top = -1;
 int S[Msize];
 void push(int x){
     top = top + 1;
-    stack[top] = x;
+    S[top] = x;
 }
 int pop(){
     top = top - 1;
@@ -56,6 +56,6 @@ int main(){
         }
         i = i + 1;
     }
-    int result = pop();
+    int result = pop(); 
     printf("Result is : %d\n", result);
 }

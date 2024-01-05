@@ -2,10 +2,10 @@
 
 int binary(int a[], int n, int search)
 {
-    int mid, l =0 , h = n-1 ;
+    int mid, l =0 , u = n-1 ;
     while(l<=u)
     {
-        mid = (l+h)/2;
+        mid = (l+u)/2;
         if(a[mid]== search)
             return mid;
         else if (a[mid] < search)
