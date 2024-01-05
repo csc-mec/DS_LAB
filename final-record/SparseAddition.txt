@@ -1,6 +1,6 @@
 PROGRAM SparseAddition
 
-PROCEDURE create(N, M, T)
+PROCEDURE create ACCEPTS n,m,t
   SET K = 0
   ASSIGN n AND m TO T[0][0] AND T[0][1] RESPECTIVELY
   FOR i FROM 0 TO n
@@ -20,14 +20,14 @@ PROCEDURE create(N, M, T)
   RETURN k
 END PROCEDURE
 
-PROCEDURE display(k, T)
+PROCEDURE display ACCEPTS k, T
   FOR i FROM 0 TO k
       PRINT T[I][0], T[I][1], AND T[I][2]
       INCREMENT k
   END FOR
 END PROCEDURE
 
-PROCEDURE ADD(n, m, k1, k2, T1, T2, T3)
+PROCEDURE ADD ACCEPTS n, m, k1, k2, T1, T2, T3
   SET i, j, k TO 1
   ASSIGN n AND m TO T3[0][0] AND T3[0][1] RESPECTIVELY
   WHILE i <= k1 AND j <= k2

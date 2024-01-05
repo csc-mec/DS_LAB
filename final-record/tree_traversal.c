@@ -141,12 +141,15 @@ int main()
                 break;
             case 5:
                 inorder(root);
+                printf("\n");
                 break;
             case 6:
                 preorder(root);
+                printf("\n");
                 break;
             case 7:
                 postorder(root);
+                printf("\n");
                 break;
             case 8:
                 printf("Enter the key to delete:");

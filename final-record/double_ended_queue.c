@@ -27,15 +27,15 @@ bool isFull(){
 
 void main(){
 	int option;
+	printf("\n\nQueue operations\n");	
+	printf("1.Display\n");
+	printf("2.Add to rear\n");
+	printf("3.Add to front\n");
+	printf("4.Remove from rear\n");
+	printf("5.Remove from front\n");
+	printf("6.Size\n");
+	printf("7.Exit\n");
 	while(true){
-		printf("\n\nQueue operations\n");
-		printf("1.Display\n");
-        printf("2.Add to rear\n");
-        printf("3.Add to front\n");
-        printf("4.Remove from rear\n");
-        printf("5.Remove from front\n");
-        printf("6.Size\n");
-        printf("7.Exit\n");
 		printf("Select an option : ");
 		scanf("%d",&option);
 		printf("\n");
@@ -124,7 +124,6 @@ void rmFront(){
 	}
 }
 
-//Print out the queue
 void display(){
 	if(isEmpty()){
 		printf("Queue is Empty ! \n");

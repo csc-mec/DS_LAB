@@ -140,7 +140,7 @@ void delete_pos(){
 void main(){
     int choice;
     printf("\n1.Display\n2.InsertBegin\n3.InsertEnd\n4.InsertPos\n5.DeleteBegin\n6.DeleteEnd\n7.DeletePos\n8.Exit");
-    while(choice!=9){
+    while(choice!=8){
         printf("\nEnter choice:");
         scanf("%d",&choice);
         switch(choice){
