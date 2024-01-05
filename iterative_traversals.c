@@ -65,6 +65,82 @@ void preorderIterative(struct node *root)
     printf("\n");
 }
 
+void inorderTraversal(struct node *ptr)                 //Inorder traversal using Recursion
+{
+    if (ptr!= NULL)
+    {
+        inorderTraversal(ptr->left);
+        printf("%d",ptr->data);
+        inorderTraversal(ptr->right);
+    }
+}
+
+void inorderIterative(struct node *root)
+{
+    if (!root) {
+        return;
+    }
+
+    struct node* stack[1000];  // Assuming a maximum of 1000 nodes
+    int top = -1;
+
+    struct node* current = root;
+
+    while (current != NULL || top != -1) {
+        while (current != NULL) {
+            stack[++top] = current;
+            current = current->left;
+        }
+
+        current = stack[top--];
+        printf("%d", current->data);
+
+        current = current->right;
+    }
+}
+
+void postorderTraversal(struct node* ptr)               //Postorder traversal recursive approach
+{
+    if (ptr!=NULL)
+    {
+        postorderTraversal(ptr->left);
+        postorderTraversal(ptr->right);
+        printf("%d",ptr->data);
+    }
+}
+
+
+  
+
+void postorderIterative(struct node *root)
+{
+    if (!root) {
+        return;
+    }
+
+    struct node* stack[1000];  // Assuming a maximum of 1000 nodes
+    int top = -1;
+    struct node* current = root;
+    struct node* prev = NULL;
+
+    while (current != NULL || top != -1) {
+        while (current != NULL) {
+            stack[++top] = current;
+            current = current->left;
+        }
+
+        if (stack[top]->right == NULL || stack[top]->right == prev) {
+            current = stack[top--];
+            printf("%d", current->data);
+            prev = current;
+            current = NULL;
+        } else {
+            current = stack[top]->right;
+        }
+    }
+}
+
+
 void main()
 {
     struct node *root_node = malloc(sizeof(struct node));
@@ -75,10 +151,17 @@ void main()
     rightChild(root_node->left,5);
     leftChild(root_node->right,6);
     rightChild(root_node->right,7);
-    printf("Recursive approach\n");
+    printf("Preorder Traversal\n");
     preorderTraversal(root_node);
     printf("\nIterative approach\n");
     preorderIterative(root_node);
-    printf("\nAll processes completed");
+    printf("\n\n Inorder Traversal\n");
+    inorderTraversal(root_node);
+    printf("\n Iterative approach\n");
+    inorderIterative(root_node);
+    printf("\n\n Postorder Traversal\n");
+    postorderTraversal(root_node);
+    printf("\nIterative approach\n");
+    postorderIterative(root_node);
 
 }
