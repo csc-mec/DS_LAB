@@ -4,6 +4,7 @@
 - [Contents](#contents)
 - [Programs](#programs)
 - [Psudocodes](https://github.com/csc-mec/DS_LAB/blob/main/pseudocodes/pseudo_index.md)
+- [Finalized Programs For Record](https://github.com/csc-mec/DS_LAB/tree/main/final-record)
 
 ## Programs
 
@@ -40,5 +41,5 @@
     - [Stack using Linked List](https://github.com/csc-mec/DS_LAB/blob/main/StackLinkedList.c)
 - Cycle 8
     - [Circular Linked List](https://github.com/csc-mec/DS_LAB/blob/main/CircularLinkedList.c)
-    - Doubly Linked List [TBD]
+    - [Doubly Linked List](https://github.com/csc-mec/DS_LAB/blob/main/DoublyLinkedList.c)
     - [Merge Sort](https://github.com/csc-mec/DS_LAB/blob/main/merge.c)
