@@ -11,7 +11,7 @@
 >[!NOTE]  
 >Please create an issue if you find any errors in the programs.
 
-### Programs
+### Lab Programs
 - Cycle 1
     - [Linear Search](https://github.com/csc-mec/DS_LAB/blob/main/linear_search.c)
     - [Binary Search](https://github.com/csc-mec/DS_LAB/blob/main/binary_search.c)
@@ -43,3 +43,14 @@
     - [Circular Linked List](https://github.com/csc-mec/DS_LAB/blob/main/CircularLinkedList.c)
     - [Doubly Linked List](https://github.com/csc-mec/DS_LAB/blob/main/DoublyLinkedList.c)
     - [Merge Sort](https://github.com/csc-mec/DS_LAB/blob/main/merge.c)
+
+### Other Programs
+- [Circular Queue](https://github.com/csc-mec/DS_LAB/blob/main/CircularQueue.c)
+- [Graph Traversal](https://github.com/csc-mec/DS_LAB/blob/main/CircularQueue.c)
+- [Hashing]()
+- [Heap Sort](https://github.com/csc-mec/DS_LAB/blob/main/CircularQueue.c)
+- [Polynomial addition using linked list](https://github.com/csc-mec/DS_LAB/blob/main/CircularQueue.c)
+- [Polynomial multiplication using linked list](https://github.com/csc-mec/DS_LAB/blob/main/CircularQueue.c)
+- [Quick Sort](https://github.com/csc-mec/DS_LAB/blob/main/CircularQueue.c)
+- [Tree traversals](https://github.com/csc-mec/DS_LAB/blob/main/CircularQueue.c)
+- [Binary tree using array](https://github.com/csc-mec/DS_LAB/blob/main/CircularQueue.c)
