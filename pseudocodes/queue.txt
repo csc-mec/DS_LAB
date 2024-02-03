@@ -1,0 +1,79 @@
+PROGRAM QUEUE
+
+DEFINE SIZE 10
+
+DECLARE ARRAY queue[SIZE]
+SET front = -1
+SET rear = -1
+
+PROCEDURE ISEMPTY
+   RETURN front == -1 && rear == -1
+END PROCEDURE
+
+PROCEDURE ISFULL
+    RETURN rear == SIZE - 1
+END PROCEDURE
+
+PROCEDURE ENQUEUE ACCEPTS element
+    IF ISEMPTY
+        SET front = 0
+        SET rear = 0
+        SET queue[rear] = element
+    ELSE IF ISFULL
+        PRINT "Queue overflow"
+    ELSE
+        SET rear = rear + 1
+        SET queue[rear] = element
+    END IF
+END PROCEDURE
+
+PROCEDURE DEQUEUE
+    IF ISEMPTY
+        PRINT "Queue underflow"
+    ELSE IF front > rear
+        PRINT "Cannot dequeue"
+    ELSE
+       	PRINT queue[front] , " is dequeued"
+        SET front = front + 1
+    END IF
+END PROCEDURE
+
+PROCEDURE QSIZE
+    IF ISEMPTY
+        PRINT "Queue underflow"
+    ELSE
+        PRINT rear - front + 1
+    END IF
+END PROCEDURE
+
+PROCEDURE DISPLAY
+    IF !ISEMPTY
+        FOR i = front TO rear
+            PRINT queue[i]
+            INCREMENT i
+        END FOR
+    ELSE
+        PRINT "Queue underflow"
+    END IF
+END PROCEDURE
+
+PROCEDURE MAIN
+    PRINT "1. Display"
+    PRINT "2. Enqueue"
+    PRINT "3. Dequeue"
+    PRINT "4. Size"
+    PRINT "5. Exit"
+    WHILE TRUE
+        INPUT choice
+        CASE choice OF
+            1: CALL DISPLAY
+            2: CALL INPUT element
+               CALL ENQUEUE(element)
+            3: CALL DEQUEUE
+            4: CALL QSIZE
+            5: CALL EXIT
+        END CASE
+    END WHILE
+END PROCEDURE
+
+END PROGRAM

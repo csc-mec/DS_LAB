@@ -1,0 +1,41 @@
+PROGRAM quick_sort
+DEFINE SIZE 20
+
+PROCEDURE partition ACCEPTS array , low , high
+    SET pivot = array[high]
+    SET i = low - 1
+    FOR j = low TO high - 1
+        IF array[j] < pivot
+            SET i = i + 1
+            SET temp = array[i]
+            SET array[i] = array[j]
+            SET array[j] = temp
+        END IF
+        INCREMENT j
+    END FOR
+    SET temp = array[i + 1]
+    SET array[i + 1] = array[high]
+    SET array[high] = temp
+    RETURN i + 1
+END PROCEDURE
+PROCEDURE quick_sort ACCEPTS array , low , high
+    IF low < high
+        SET pi = CALL partition(array , low , high)
+        CALL quick_sort(array , low , pi - 1)
+        CALL quick_sort(array , pi + 1 , high)
+    END IF
+END PROCEDURE
+PROCEDURE MAIN
+    DECLARE ARRAY array[SIZE]
+    INPUT size
+    FOR i = 0 TO size - 1
+        INPUT array[i]
+        INCREMENT i
+    END FOR
+    CALL quick_sort(array , 0 , size - 1)
+    FOR i = 0 TO size - 1
+        PRINT array[i]
+        INCREMENT i
+    END FOR
+END PROCEDURE
+END PROGRAM

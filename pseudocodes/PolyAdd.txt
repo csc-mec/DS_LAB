@@ -1,0 +1,45 @@
+PROGRAM AddPolynomials
+
+PROCEDURE main
+    STRUCTURE Poly
+        DECLARE coeff
+        DECLARE expo
+    END STRUCTURE
+    DECLARE Poly p1[10]
+    DECLARE Poly p2[10]
+    INPUT a
+    INPUT b
+    FOR i = a TO 0 
+        INPUT p1[i].coeff
+        SET p1[i].expo = i
+        DECREMENT i
+    END FOR
+    FOR i = b TO 0
+        INPNT p2[i].coeff
+        SET p2[i].expo = i
+        DECREMENT i
+    END FOR
+    IF a > b 
+        SET max = a
+    ELSE
+        SET max = b
+    END IF
+    FOR i = max TO 1 
+        IF p1[i].expo == p2[i].expo 
+            PRINT p1[i].coeff + p2[i].coeff, "(x^", p1[i].expo, ") + "
+        ELSE IF max == a 
+            PRINT p1[i].coeff, "(x^", p1[i].expo, ") + "
+        ELSE IF max == b 
+            PRINT p2[i].coeff, "(x^", p2[i].expo, ") + "
+        END IF
+        DECREMENT i
+    END FOR
+    IF p1[0].expo == p2[0].expo 
+        PRINT p1[0].coeff + p2[0].coeff, "(x^", p1[0].expo, ")"
+    ELSE IF max == a 
+        PRINT p1[0].coeff, "(x^", p1[0].expo, ")"
+    ELSE IF max == b 
+        PRINT p2[0].coeff, "(x^", p2[0].expo, ")"
+    END IF
+END PROCEDURE
+END PROGRAM

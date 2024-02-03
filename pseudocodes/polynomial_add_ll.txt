@@ -1,0 +1,86 @@
+PROGRAM  POLYNOMIAL_ADD_LL
+
+DECLARE STRUCTURE node
+	DECLARE INTEGER coefficent
+    DECLARE INTEGER degree
+    DECLARE POINTER node next
+END STRUCTURE
+
+DECLARE pointers poly1, poly2 and poly3 and SET to NULL
+
+PROCEDURE read_Poly ACCEPTS poly , coeff and deg
+    DECLARE temp pointer and SET to poly
+    DECLARE newnode pointer and ALLOCATE MEMORY
+    SET newnode→next = NULL
+    SET newnode→coefficent = coeff
+    SET newnode→degree = deg
+    IF poly = NULL
+        SET poly = newnode
+    ELSE
+        WHILE temp->next!= NULL
+            SET temp = temp->next
+        ENDWHILE
+        SET temp->next = newnode
+    ENDIF
+    RETURN poly
+END PROCEDURE
+
+PROCEDURE display ACCEPTS POINTER poly
+    WHILE poly->next!= NULL
+        DISPLAY poly->coefficent, poly->degree
+        SET poly = poly->next
+    ENDWHILE
+    DISPLAY poly->coefficent, poly->degree
+END PROCEDURE
+
+PROCEDURE addPoly
+    CREATE pointer newnode and ALLOCATE MEMORY
+    SET newnode→next = NULL
+    CRETE pointer temp1 and SET temp1 = poly1
+    CRETE pointer temp2 and SET temp2 = poly2
+    CRETE pointer temp3 and SET temp3 = poly3
+    WHILE temp1!= NULL and temp2!= NULL
+        IF temp1->degree = temp2->degree
+            SET poly3 = read_Poly(poly3, (temp1->coefficent+temp2->coefficent), temp1->degree)
+            SET temp1 = temp1->next
+            SET temp2 = temp2->next
+        ELSE IF temp1->degree > temp2->degree
+            SET poly3 = read_Poly(poly3, temp1->coefficent, temp1->degree)
+            SET temp1 = temp1->next
+        ELSE
+            SET poly3 = read_Poly(poly3, temp2->coefficent, temp2->degree)
+            SET temp2 = temp2->next
+        ENDIF
+    ENDWHILE
+    WHILE temp1!= NULL
+        SET poly3 = read_Poly(poly3, temp1->coefficent, temp1->degree)
+        SET temp1 = temp1->next
+    ENDWHILE
+    WHILE temp2!= NULL
+        SET poly3 = read_Poly(poly3, temp2->coefficent, temp2->degree)
+        SET temp2 = temp2->next
+    ENDWHILE
+    CALL PROCEDURE display(poly3)
+END PROCEDURE
+
+PROCEDURE main
+	DISPLAY MENU
+    INPUT choice FROM USER
+    WHILE TRUE
+        CASE choice OF
+            1:
+                INPUT VALUE coeff and deg FROM USER
+                SET poly1 = read_Poly(poly1, coeff, deg)
+            2:
+                INPUT VALUE coeff and deg FROM USER
+                SET poly2 = read_Poly(poly1, coeff, deg)
+            3:
+                CALL addPoly()
+            4:
+                CALL exit()
+            DEFAULT:
+                DISPLAY Invalid choice
+        END CASE
+    END WHILE
+END PROCEDURE
+END PROGRAM

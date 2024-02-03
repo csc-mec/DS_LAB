@@ -1,0 +1,41 @@
+PROGRAM heap_sort
+
+PROCEDURE swap ACCEPTS POINTER x,POINTER y
+    SET temp=*x
+    SET *x=*y
+    SET *y=temp 
+END PROCEDURE
+
+PROCEDURE maxheapify ACCEPTS array,size,i
+    SET largest= i
+    SET l=2*i+1
+    SET r=2*i+2
+    IF l<size AND array[l]>array[largest]
+        SET largest=l
+    IF r<size AND array[r]>array[largest]
+        SET largest=r
+    IF largest!=i
+        CALL swap(array[i] ,array[largest])
+        CALL maxheapify(array,size,largest)
+    END IF
+END PROCEDURE
+
+PROCEDURE heapsort ACCEPTS array,size
+    FOR i=size/2 -1 TO 0
+         CALL maxheapify(array,size,i)
+         INCREMENT i 
+    END FOR 
+    FOR i=size-1 TO 1
+        CALL swap(*array[0],*array[i])
+        CALL maxheapify(array,i,0)
+        INCREMENT i
+    END FOR 
+END PROCEDURE
+
+PROCEDURE main
+    INPUT size
+    INPUT array[size]
+    CALL heapsort(array,size)
+    PRINT array
+END PROCEDURE
+END PROGRAM

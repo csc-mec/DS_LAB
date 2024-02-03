@@ -1,0 +1,82 @@
+PROGRAM INFIX_TO_POSTFIX
+DEFINE SIZE 20
+DECLARE CHARACTER ARRAY stack[SIZE]
+DECLARE CHARACTER ARRAY array[SIZE]
+
+SET top = -1
+SET index = -1
+
+PROCEDURE ADDTOARRAY ACCEPTS element
+    SET index = index + 1
+    SET array[index] = element
+END PROCEDURE
+
+PROCEDURE PUSH ACCEPTS element
+    SET top = top + 1
+    SET stack[top] = element
+END PROCEDURE
+
+PROCEDURE POP
+    SET top = top - 1
+    RETURN stack[top + 1]
+END PROCEDURE
+
+PROCEDURE ISOPERATOR ACCEPTS element
+    CASE element OF
+        '+': RETURN TRUE
+        '-': RETURN TRUE
+        '*': RETURN TRUE
+        '/': RETURN TRUE
+        '^': RETURN TRUE
+        '(': RETURN TRUE
+        ')': RETURN TRUE
+        DEFAULT: RETURN FALSE
+    END CASE
+END PROCEDURE
+
+PROCEDURE PRIORITY ACCEPTS element
+    CASE element OF
+        '+': RETURN 1
+        '-': RETURN 1
+        '*': RETURN 2
+        '/': RETURN 2
+        '^': RETURN 3
+        '(': RETURN 0
+    END CASE
+END PROCEDURE
+
+PROCEDURE ASSIGN ACCEPTS element
+    IF !ISOPERATOR(element)
+        CALL ADDTOARRAY(element)
+    ELSE
+        IF top == -1
+            CALL PUSH(element)
+        ELSE IF element == ')'
+            WHILE stack[top] != '('
+                CALL ADDTOARRAY(CALL POP)
+            END WHILE
+            CALL POP
+        ELSE IF element == '(' OR element == '^'
+            CALL PUSH(element)
+        ELSE
+            WHILE PRIORITY(stack[top]) >= PRIORITY(element)
+                CALL ADDTOARRAY(CALL POP)
+            END WHILE
+            CALL PUSH(element)
+        END IF
+    END IF
+END PROCEDURE
+
+PROCEDURE MAIN
+    INPUT expression
+    FOR i = 0 TO expression.length - 1
+        CALL ASSIGN(expression[i])
+        INCREMENT i
+    END FOR
+    WHILE top != -1
+        CALL ADDTOARRAY(CALL POP)
+    END WHILE
+    PRINT array
+END PROCEDURE
+
+END PROGRAM

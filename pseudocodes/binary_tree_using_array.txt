@@ -1,0 +1,50 @@
+PROGRAM binary_tree_traversal
+
+PROCEDURE get_right_child ACCEPTS index
+    IF tree[index] != '\0' AND ((2 * index) + 2) <= complete_node
+        RETURN (2 * index) + 2
+    ELSE
+        RETURN -1
+    END IF
+END PROCEDURE
+
+PROCEDURE get_left_child ACCEPTS index
+    IF tree[index] != '\0' AND (2 * index + 1) <= complete_node
+        RETURN 2 * index + 1
+    ELSE
+        RETURN -1
+    END IF
+END PROCEDURE
+
+PROCEDURE preorder ACCEPTS index
+    IF index >= 0 AND tree[index] != '\0'
+        PRINT tree[index]
+        CALL preorder(get_left_child(index))
+        CALL preorder(get_right_child(index))
+    END IF
+END PROCEDURE
+
+PROCEDURE postorder ACCEPTS index
+    IF index >= 0 AND tree[index] != '\0'
+        CALL postorder(get_left_child(index))
+        CALL postorder(get_right_child(index))
+        PRINT tree[index]
+    END IF
+END PROCEDURE
+
+PROCEDURE inorder ACCEPTS index
+    IF index >= 0 AND tree[index] != '\0'
+        CALL inorder(get_left_child(index))
+        PRINT tree[index]
+        CALL inorder(get_right_child(index))
+    END IF
+END PROCEDURE
+
+PROCEDURE main
+    CALL preorder(0)
+    CALL postorder(0)
+    CALL inorder(0)
+END PROCEDURE
+
+END PROGRAM
+

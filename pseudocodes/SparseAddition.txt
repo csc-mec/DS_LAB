@@ -1,0 +1,100 @@
+PROGRAM SparseAddition
+
+PROCEDURE create ACCEPTS n,m,t
+  SET K = 0
+  ASSIGN n AND m TO T[0][0] AND T[0][1] RESPECTIVELY
+  FOR i FROM 0 TO n
+      FOR j FROM 0 TO m
+          INPUT e
+          IF e != 0
+              INCREMENT k BY 1
+              SET T[k][0]=i
+              SET T[k][1]=j
+              SET T[k][2]=e
+	  END IF
+          INCREMENT j
+      END FOR
+      INCREMENT i
+  END FOR
+  ASSIGN k TO T[0][2]
+  RETURN k
+END PROCEDURE
+
+PROCEDURE display ACCEPTS k, T
+  FOR i FROM 0 TO k
+      PRINT T[I][0], T[I][1], AND T[I][2]
+      INCREMENT k
+  END FOR
+END PROCEDURE
+
+PROCEDURE ADD ACCEPTS n, m, k1, k2, T1, T2, T3
+  SET i, j, k TO 1
+  ASSIGN n AND m TO T3[0][0] AND T3[0][1] RESPECTIVELY
+  WHILE i <= k1 AND j <= k2
+      IF T1[i][0] == T2[j][0]
+          IF T1[i][1] == T2[j][1]
+              INCREMENT k 
+              SET T3[k][0]=T1[i][0]
+              SET T3[k][1]=T1[i][1]
+              SET T3[k][2]=T1[i][2] + T2[j][2]
+              INCREMENT i 
+	      INCREMENT j 
+          ELSE IF T1[i][1] < T2[j][1]
+              INCREMENT k 
+              SET T3[k][0]=T1[i][0]
+              SET T3[k][1]=T1[i][1]
+              SET T3[k][2]=T1[i][2]
+              INCREMENT i 
+          ELSE
+              INCREMENT k 
+              SET T3[k][0]=T2[j][0]
+              SET T3[k][1]=T2[j][1]
+              SET T3[k][2]=T2[j][2]
+              INCREMENT j 
+	  END IF
+      ELSE IF T1[i][0] < T2[j][0]
+          INCREMENT k
+          SET T3[k][0]=T1[i][0]
+          SET T3[k][1]=T1[i][1]
+          SET T3[k][2]=T1[i][2]
+          INCREMENT i 
+      ELSE
+          INCREMENT k 
+          ASSIGN T2[j][0], T2[j][1], AND T2[j][2] TO T3[k][0], T3[k][1], AND T3[k][2] RESPECTIVELY
+          INCREMENT j 
+      END IF
+  WHILE i <= k1
+      INCREMENT k 
+      SET T3[k][0]=T1[i][0]
+      SET T3[k][1]=T1[i][1]
+      sET T3[k][2]=T1[i][2]
+      INCREMENT I 
+  END WHILE
+  WHILE j <= k2
+      INCREMENT k 
+      SET T3[k][0]=T2[j][0]
+      SET T3[k][1]=T2[j][1]
+      SET T3[k][2]=T2[j][2]
+      INCREMENT j 
+  END WHILE
+  RETURN k
+END PROCEDURE
+
+PROCEDURE MAIN
+  DECLARE VARIABLES n1, m1, n2, m2, k1, k2, k3
+  INPUT n1 AND m1
+  INPUT n2 AND m2
+  DECLARE ARRAYS T1, T2, T3
+  IF n1 != n2 OR m1 != m2
+      PRINT "ADDITION NOT POSSIBLE"
+      EXIT
+  END IF
+  CALL create(n1,m1,T1)
+  CALL display(T1)
+  CALL create(n2,m2,T2)
+  CALL display (T2)
+  CALL ADD(n1,m1,k1,k2,T1,T2,T3)
+  CALL display(T3)
+END PROCEDURE
+
+END PROGRAM

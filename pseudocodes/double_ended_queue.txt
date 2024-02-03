@@ -1,0 +1,124 @@
+PROGRAM DEQUE
+DEFINE SIZE 5
+DECLARE ARRAY Q[SIZE]
+SET front = -1
+SET rear = -1
+
+PROCEDURE ISEMPTY
+    RETURN front == -1 
+END PROCEDURE
+
+PROCEDURE ISFULL
+    RETURN (rear + 1) % SIZE == front
+END PROCEDURE
+
+PROCEDURE ADDREAR 
+    IF ISFULL
+        PRINT "Queue overflow"
+    ELSE
+        IF ISEMPTY
+            SET front = 0
+            SET rear = 0
+        ELSE
+            SET rear = (rear + 1) % SIZE
+        END IF
+        INPUT Q[rear]
+    END IF
+END PROCEDURE
+
+PROCEDURE ADDFRONT
+    IF ISFULL
+        PRINT "Queue overflow"
+    ELSE
+        IF ISEMPTY
+            SET front = 0
+            SET rear = 0
+        ELSE IF front == 0
+            SET front = SIZE - 1
+        ELSE
+            SET front = front - 1
+        END IF
+        INPUT Q[front]
+    END IF
+END PROCEDURE
+
+PRCEDURE REMOVEREAR 
+    IF ISEMPTY
+        PRINT "Queue underflow"
+    ELSE
+        PRINT Q[rear] " is removed"
+        IF front == rear
+            SET front = -1
+            SET rear = -1
+        ELSE IF rear == 0
+            SET rear = SIZE - 1
+        ELSE
+            SET rear = rear - 1
+        END IF
+    END IF
+END PROCEDURE
+
+PROCEDURE REMOVEFRONT
+    IF ISEMPTY
+        PRINT "Queue underflow"
+    ELSE
+        PRINT Q[front] " is removed"
+        IF front == rear
+            SET front = -1
+            SET rear = -1
+        ELSE 
+            SET front = (front + 1) % SIZE
+        END IF
+    END IF
+END PROCEDURE
+
+PROCEDURE DISPLAY
+    IF ISEMPTY
+        PRINT "Queue is empty"
+        RETURN
+    END IF
+    SET i = front
+    WHILE i != rear
+        PRINT Q[i]
+        SET i = (i + 1) % SIZE
+    END WHILE
+    PRINT Q[rear]
+END PROCEDURE
+
+PROCEDURE SIZE
+    DECLARE INTEGER size
+    IF ISEMPTY
+        SET size = 0
+    ELSE IF ISFULL
+        SET size = SIZE
+    ELSE IF front > rear
+        SET size = SIZE - (front - rear) + 1
+    ELSE
+        SET size = rear - front + 1
+    END IF
+    PRINT size
+END PROCEDURE
+
+PRCEDURE MAIN
+    PRINT "1. Display"
+    PRINT "2. Add rear"
+    PRINT "3. Add front"
+    PRINT "4. Remove rear"
+    PRINT "5. Remove front"
+    PRINT "6. Size"
+    PRINT "7. Exit"
+    WHILE TRUE
+        INPUT choice
+        CASE choice OF
+            1: CALL DISPLAY
+            2: CALL ADDREAR
+            3: CALL ADDFRONT
+            4: CALL REMOVEREAR
+            5: CALL REMOVEFRONT
+            6: CALL SIZE
+            7: EXIT
+        END CASE
+    END WHILE
+END PROCEDURE
+
+END PROGRAM

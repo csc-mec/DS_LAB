@@ -1,0 +1,54 @@
+PROGRAM merge_sort
+DEFINE SIZE 20
+PROCEDURE merge ACCEPTS array , low , mid , high
+    SET i = low
+    SET j = mid + 1
+    SET k = 0
+    DECLARE ARRAY temp[hight - low + 1]
+    WHILE i <= mid AND j <= high
+        IF array[i] < array[j]
+            SET temp[k] = array[i]
+            SET i = i + 1
+        ELSE
+            SET temp[k] = array[j]
+            SET j = j + 1
+        END IF
+        SET k = k + 1
+    END WHILE
+    WHILE i <= mid
+        SET temp[k] = array[i]
+        SET i = i + 1
+        SET k = k + 1
+    END WHILE
+    WHILE j <= high
+        SET temp[k] = array[j]
+        SET j = j + 1
+        SET k = k + 1
+    END WHILE
+    FOR i = low TO high
+        SET array[i] = temp[i - low]
+        INCREMENT i
+    END FOR
+END PROCEDURE
+PROCEDURE merge_sort ACCEPTS array , low , high
+    IF low < high
+        SET mid = (low + high) / 2
+        CALL merge_sort(array , low , mid)
+        CALL merge_sort(array , mid + 1 , high)
+        CALL merge(array , low , mid , high)
+    END IF
+END PROCEDURE
+PROCEDURE MAIN
+    DECLARE ARRAY array[SIZE]
+    INPUT size
+    FOR i = 0 TO size - 1
+        INPUT array[i]
+        INCREMENT i
+    END FOR
+    CALL merge_sort(array , 0 , size - 1)
+    FOR i = 0 TO size - 1
+        PRINT array[i]
+        INCREMENT i
+    END FOR
+END PROCEDURE
+END PROGRAM

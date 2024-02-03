@@ -1,0 +1,57 @@
+PROGRAM CIRCULARQUEUE
+PROCEDURE MAIN
+    INPUT max
+    DECLARE queue[max] 
+    SET front = -1, rear = -1
+
+    PROCEDURE ENQUEUE ACCEPTS item
+        IF front=-1 AND rear=-1
+            SET front=rear=0;
+            SET queue[rear]=item
+        ELSE IF (rear+1)%max=front
+            PRINT "QUEUE IS FULL"
+        ELSE 
+            SET rear=(rear+1)%max
+            SET queue[rear]=item
+        END IF
+    END PROCEDURE
+
+    PROCEDURE DEQUEUE
+        IF front=-1 AND rear=-1
+            PRINT "QUEUE IS EMPTY"
+        ELSE IF front=rear
+            PRINT "Element dequeued is" queue[front]
+            SET front=rear=-1
+        ELSE
+            PRINT "Element dequeued is" queue[front]
+            SET front=(front+1)%max
+        END IF
+    END PROCEDURE
+
+    PROCEDURE DISPLAY
+        SET i=front
+        IF front=-1 AND rear=-1
+            PRINT "QUEUE IS EMPTY"
+        ELSE
+            WHILE i!=rear
+                PRINT queue[i]
+                INCREMENT i=(i+1)%max;
+            END WHILE
+        PRINT queue[rear]
+        END IF
+    END PROCEDURE
+    
+    PRINT "1.ENQUEUE 2.DEQUEUE 3.DISPLAY 4.EXIT"
+
+    WHILE TRUE
+        INPUT ch
+        CASE ch OF
+            1:  INPUT item
+                CALL ENQUEUE(item)
+            2:  CALL DEQUEUE
+            3:  CALL DISPLAY
+            4:  EXIT
+        END SWITCH
+    END WHILE    
+END PROCEDURE      
+END PROGRAM

@@ -1,0 +1,150 @@
+PROGRAM TREE_TRAVERSAL
+
+STRUCTURE Node
+    INTEGER key
+    Node POINTER left
+    Node POINTER right
+END STRUCTURE
+SET Node POINTER root = NULL
+SET Node POINTER temp = NULL
+
+PROCEDURE newNode ACCEPTS key
+    SET Node POINTER node = Allocate memory for Node
+    SET node.key = key
+    SET node.left = NULL
+    SET node.right = NULL
+    RETURN node
+END PROCEDURE
+
+PROCEDURE inorder ACCEPTS root
+    IF root != NULL
+        CALL inorder(root.left)
+        PRINT root.key
+        CALL inorder(root.right)
+    END IF
+END PROCEDURE
+
+PROCEDURE preorder ACCEPTS root
+    IF root != NULL
+        PRINT root.key
+        CALL preorder(root.left)
+        CALL preorder(root.right)
+    END IF
+END PROCEDURE
+
+PROCEDURE postorder ACCEPTS root
+    IF root != NULL
+        CALL postorder(root.left)
+        CALL postorder(root.right)
+        PRINT root.key
+    END IF
+END PROCEDURE
+
+PROCEDURE delete ACCEPTS root, key
+    IF root == NULL
+        RETURN
+    END IF
+    IF key < root.key
+        SET root.left = CALL delete(root.left, key)
+    ELSE IF key > root.key
+        SET root.right = CALL delete(root.right, key)
+    ELSE
+        IF root.left == NULL AND root.right == NULL
+            FREE root
+            SET root = NULL
+        ELSE IF root.left == NULL
+            SET Node POINTER temp = root
+            SET root = root.right
+            FREE temp
+        ELSE IF root.right == NULL
+            SET Node POINTER temp = root
+            SET root = root.left
+            FREE temp
+        ELSE
+            SET INTEGER temp = CALL minimum(root.right)
+            SET root.key = temp
+            CALL delete(root.right, temp)
+        END IF
+    END IF
+END PROCEDURE
+
+PROCEDURE insert ACCEPTS node, key
+    IF node == NULL
+        RETURN CALL newNode(key)
+    END IF
+    IF key < node.key
+        SET node.left = CALL insert(node.left, key)
+    ELSE IF key > node.key
+        SET node.right = CALL insert(node.right, key)
+    END IF
+    RETURN node
+END PROCEDURE
+
+PROCEDURE search ACCEPTS root, key 
+    IF root == NULL OR root.key == key
+        RETURN root
+    END IF
+    IF root.key < key
+        RETURN CALL search(root.right, key)
+    END IF
+    RETURN CALL search(root.left, key)
+END PROCEDURE
+
+PROCEDURE minimum ACCEPTS root 
+    IF root == NULL
+        RETURN 0
+    END IF
+    WHILE root.left != NULL
+        SET root = root.left
+    END WHILE
+    RETURN root.key
+END PROCEDURE
+
+PROCEDURE maximum ACCEPTS root
+    IF root == NULL
+        RETURN 0
+    END IF
+    WHILE root.right != NULL
+        SET root = root.right
+    END WHILE
+    RETURN root.key
+END PROCEDURE
+
+PROCEDURE main
+    SET INTEGER ch, key
+    PRINT "1.Insert 2.Search 3.Minimum 4.Maximum 5.Inorder 6.Preorder 7.Postorder 8.Delete 9.Exit"
+    WHILE TRUE
+        INPUT ch
+        CASE ch OF
+            1:
+                INPUT key
+                SET root = CALL insert(root, key)
+            2:
+                INPUT key
+                SET temp = CALL search(root, key)
+                IF temp == NULL
+                    PRINT "Key not found"
+                ELSE
+                    PRINT "Key found"
+                END IF
+            3:
+                PRINT "Minimum key is ", CALL minimum(root)
+            4:
+                PRINT "Maximum key is ", CALL maximum(root)
+            5:
+                CALL inorder(root)
+            6:
+                CALL preorder(root)
+            7:
+                CALL postorder(root)
+            8:
+                INPUT key
+                CALL delete(root, key)
+            9:
+                EXIT program
+        END CASE
+    RETURN 0
+    END WHILE
+END PROCEDURE
+
+END PROGRAM

@@ -1,0 +1,64 @@
+PROGRAM HASHING
+
+DEFINE SIZE 10
+
+STRUCTURE Node
+    DECLARE INTEGER data
+    DECLARE POINTER Node next
+END STRUCTURE
+
+STRUCTURE HashTable
+    DECLARE POINTER TO Node chain[SIZE]
+END STRUCTURE
+
+PROCEDURE init ACCEPTS POINTER HashTable ht
+    FOR i = 0 to SIZE - 1
+        SET ht->chain[i] = NULL
+        INCREMENT i
+    END FOR
+END PROCEDURE
+
+PROCEDURE insert ACCEPTS POINTER HashTable ht , value
+    SET key = value % SIZE
+    ALLOCATE newNode
+    SET newNode->data = value
+    SET newNode->next = NULL
+    IF ht->chain[key] = NULL 
+        SET ht->chain[key] = newNode
+    ELSE
+        SET temp = ht->chain[key]
+        WHILE temp->next != NULL
+            SET temp = temp->next
+        END WHILE
+        SET temp->next = newNode
+    END IF
+END PROCEDURE
+
+PROCEDURE printHashTable ACCEPTS POINTER HashTable ht
+    FOR i = 0 TO SIZE - 1
+        PRINT "chain[" + i + "]-->"
+        SET temp = ht->chain[i]
+        WHILE temp != NULL
+            PRINT temp->data , " -->"
+            SET temp = temp->next
+        END WHILE
+        PRINT "NULL"
+        INCREMENT i
+    END FOR
+END PROCEDURE
+
+PROCEDURE main
+    DECLARE HashTable ht
+    CALL init(&ht)
+    PRINT "Enter the number of elements: "
+    INPUT num
+    FOR i = 0 TO num - 1
+        PRINT "Enter element " , (i + 1) , ": "
+        INPUT val
+        CALL insert(&ht, val)
+        INCREMENT i
+    END FOR
+    CALL printHashTable(&ht)
+END PROCEDURE
+
+END PROGRAM

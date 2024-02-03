@@ -1,0 +1,31 @@
+PROGRAM BINARYSEARCH
+
+PROCEDURE BINARYSEARCH ACCEPTS array, size, key
+    SET l = 0
+    SET h = size - 1
+    WHILE l <= h
+        SET mid = (l + h) / 2
+        IF array[mid] = key
+            RETURN mid
+        ELSE IF array[mid] < key
+            SET l = mid + 1
+        ELSE
+            SET h = mid - 1
+        END IF
+    END WHILE
+    RETURN -1
+END PROCEDURE
+
+PROCEDURE MAIN
+    INPUT size
+    INPUT array[size]
+    INPUT key
+    SET index = BINARYSEARCH(array, size, key)
+    IF index != -1
+        PRINT "Element found at index ", index
+    ELSE
+        PRINT "Element not found"
+    END IF
+END PROCEDURE
+
+END PROGRAM

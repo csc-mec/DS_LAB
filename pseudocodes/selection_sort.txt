@@ -1,0 +1,18 @@
+PROGRAM SEELCTION SORT
+PROCEDURE MAIN
+    INPUT n
+    INPUT array A[n]
+    FOR i=0 to i<n-1
+        FOR j=i+1 to j<n
+            IF A[i]>A[j]
+                SET temp=A[i]
+                SET A[i]=A[j]
+                SET A[j]=temp
+            END IF
+            INCREMENT j
+        END FOR
+        INCREMENT i
+    END FOR
+    PRINT A
+END PROCEDURE
+END PROGRAM

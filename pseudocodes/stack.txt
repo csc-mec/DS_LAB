@@ -1,0 +1,78 @@
+PROGRAM STACK
+DECLARE size = 20
+DECLARE ARRAY stack[size]
+
+SET top = -1
+
+PROCEDURE ISEMPTY 
+    IF top == -1
+        RETURN TRUE
+    ELSE
+        RETURN FALSE
+    END IF
+END PROCEDURE
+
+PROCEDURE ISFULL
+    IF top == size - 1
+        RETURN TRUE
+    ELSE
+        RETURN FALSE
+    END IF
+END PROCEDURE
+
+PROCEDURE PUSH ACCEPTS element
+    IF !ISFULL
+        SET top = top + 1
+        SET stack[top] = element
+    ELSE
+        PRINT "Stack overflow"
+    END IF
+END PROCEDURE
+
+PROCEDURE POP
+    IF !ISEMPTY
+        PRINT stack[top] " is popped"
+         	SET top = top - 1
+            ELSE
+        	PRINT "Stack underflow"
+    	END IF
+END PROCEDURE
+
+PROCEDURE PEEK
+    	IF !ISEMPTY
+        	PRINT stack[top]
+    	ELSE
+        	PRINT "Stack underflow"
+    	END IF
+END PROCEDURE
+
+PROCEDURE DISPLAY
+    	IF !ISEMPTY
+        	FOR i = top TO 0 
+            	PRINT stack[i]
+                INCREMENT i
+        	END FOR
+    	ELSE
+        	PRINT "Stack underflow"
+    	END IF
+END PROCEDURE
+
+PROCEDURE MAIN
+	PRINT "1. Display"
+        PRINT "2. Push"
+	PRINT "3. Pop"
+	PRINT "4. Peek"
+	PRINT "5. Exit"
+    	WHILE TRUE
+        	INPUT choice
+        	CASE choice OF
+                1: CALL DISPLAY
+                2: INPUT element
+                   CALL PUSH(element)
+                3: CALL POP
+                4: CALL PEEK
+                5: CALL EXIT
+        	END CASE
+    	END WHILE
+END PROCEDURE
+END PROGRAM

@@ -1,0 +1,17 @@
+PROGRAM insertion sort
+PROCEDURE MAIN
+      INPUT size
+      INPUT array[size] 
+      FOR i = 1 TO size - 1
+            SET key = array[i]
+            SET j = i - 1
+            WHILE j >= 0 AND array[j] > key
+                  SET array[j + 1] = array[j]
+                  SET j = j - 1
+            END WHILE
+            SET array[j + 1] = key
+            INCREMENT i
+      END FOR
+      PRINT array
+END PROCEDURE
+END PROGRAM

@@ -1,0 +1,47 @@
+PROGRAM POSTFIX_EVALUATION
+DEFINE SIZE 20
+DECLARE ARRAY stack[SIZE]
+SET top = -1
+
+PROCEDURE PUSH ACCEPTS element
+    SET top = top + 1
+    SET stack[top] = element
+END PROCEDURE
+
+PROCEDURE POP
+    SET top = top - 1
+    RETURN stack[top + 1]
+END PROCEDURE
+
+PROCEDURE ISOPERATOR ACCEPTS  element
+    IF element='+' OR '-' OR '*' OR '/' OR '^'
+        RETURN TRUE
+    END IF
+END PROCEDURE
+
+PROCEDURE MAIN
+    INPUT C
+    SET l = length of C
+    SET i = 0
+    WHILE i!=l
+        IF(!ISOPERATOR(C[i]))
+                SET n = C[i]- '0'
+                CALL PUSH(n)
+        ELSE
+             SET O2 = CALL POP
+             SET O1 = CALL POP
+             CASE C[i] OF
+                   '+':   SET  r= O1 + O2
+                   '-':   SET  r= O1 – O2
+                   '*':   SET  r= O1 * O2 
+                   '/':   SET  r= O1 / O2
+                   '^':   SET  r= O1 ^ O2
+             END CASE
+             CALL PUSH(r)
+        END IF    
+        SET i=i+1
+    END WHILE
+    SET result = CALL POP
+    PRINT result
+END PROCEDURE
+END PROGRAM

@@ -1,0 +1,25 @@
+PROGRAM LINEARSEARCH
+
+PROCEDURE LINEARSEARCH ACCEPTS array, size, key
+    FOR i = 0 TO size - 1
+        IF array[i] = key
+            RETURN i
+        END IF
+        INCREMENT i
+    END FOR
+    RETURN -1
+END PROCEDURE
+
+PROCEDURE MAIN
+    INPUT size
+    INPUT array[size]
+    INPUT key
+    SET index = LINEARSEARCH(array, size, key)
+    IF index == -1
+        PRINT "Element not found"
+    ELSE
+        PRINT "Element found at index ",index
+    END IF
+END PROCEDURE
+
+END PROGRAM
